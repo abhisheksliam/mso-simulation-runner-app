@@ -13,7 +13,7 @@
 
  // If the list item does not contain the text phrase fade it out
  if ($(this).text().search(new RegExp(filter, "i")) < 0) {
- $(this).fadeOut();
+ $(this).fadeOut();pre
 
  // Show the list item if the phrase matches and increase the count by 1
  } else {
@@ -68,6 +68,7 @@ actionList = {
         "enterText(String text)",
         "pressNreleaseKey(MyKeys keyName)",
         "pressKey(MyKeys keyName)",
+        "pressKeyMultipleTimes(MyKeys myKey , String counter)",
         "releaseKey(MyKeys keyName)",
         "waitFor()",
         "release()",
@@ -130,6 +131,7 @@ actionList = {
         "pressControlENTER()",
         "pressControlHOME()",
         "pressKey(MyKeys keyName)",
+        "pressKeyMultipleTimes(MyKeys myKey , String counter)",
         "pressNreleaseKey(MyKeys keyName)",
         "releaseKey(MyKeys keyName)",
         "moveByOffset(int xOffset, int yOffset)",
@@ -151,6 +153,7 @@ actionList = {
         "enterTextInElement(String elementName, String text)",
         "click(String elementName)",
         "pressKey(MyKeys keyName)",
+        "pressKeyMultipleTimes(MyKeys myKey , String counter)",
         "pressNreleaseKey(MyKeys keyName)",
         "releaseKey(MyKeys keyName)",
         "selectSlideFromSlidePane(String slideNumber)",
@@ -194,6 +197,7 @@ actionList = {
 	        "selectInputText(String elementName)",
 	        "waitFor()",
 	        "pressKey(MyKeys keyName)",
+	        "pressKeyMultipleTimes(MyKeys myKey , String counter)",
 	        "pressNreleaseKey(MyKeys keyName)",
 	        "releaseKey(MyKeys keyName)",
 	        "enterText(String text)",
