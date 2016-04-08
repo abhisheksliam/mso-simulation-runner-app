@@ -158,7 +158,7 @@ actionList = {
         "releaseKey(MyKeys keyName)",
         "selectSlideFromSlidePane(String slideNumber)",
         "rightClickSlideInSlidePane(String slideNumber)",
-        "dragAndDropSlideInSlidePane(String firstSlide, String secondSlide)",
+	"dragAndDropSlideInSlidePane(String firstSlideNumber, String secondSlideNumber)",
         "clickAt(String elementName, int pos)",
         "clickAtCurrentPos()",
         "clickAtPercent(String elementName, int xposPercent, int yposPercent)",
