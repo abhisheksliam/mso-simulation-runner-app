@@ -13,7 +13,7 @@
 
  // If the list item does not contain the text phrase fade it out
  if ($(this).text().search(new RegExp(filter, "i")) < 0) {
- $(this).fadeOut();pre
+ $(this).fadeOut();
 
  // Show the list item if the phrase matches and increase the count by 1
  } else {
@@ -108,7 +108,7 @@ actionList = {
     word: [
         "clickAt(String elementName, int pos)",
         "clickAtPercent(String elementName, int xposPercent, int yposPercent)",
-        "dragAndDropSlideInSlidePane(String firstSlide, String secondSlide)",
+        "dragAndDropSlideInSlidePane(String firstSlideNumber, String secondSlideNumber)",
         "rightClickSlideInSlidePane(String slideNumber)",
         "selectMultiParaText(String elementNameStart, String elementNameEnd, int Start, int End, Method methodType)",
         "selectSlideFromSlidePane(String slideNumber)",
@@ -158,7 +158,7 @@ actionList = {
         "releaseKey(MyKeys keyName)",
         "selectSlideFromSlidePane(String slideNumber)",
         "rightClickSlideInSlidePane(String slideNumber)",
-	"dragAndDropSlideInSlidePane(String firstSlideNumber, String secondSlideNumber)",
+        "dragAndDropSlideInSlidePane(String firstSlide, String secondSlide)",
         "clickAt(String elementName, int pos)",
         "clickAtCurrentPos()",
         "clickAtPercent(String elementName, int xposPercent, int yposPercent)",
