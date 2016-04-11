@@ -40,7 +40,7 @@ console.log('***** ' + clickedAddMethodNodeDataTree.item);
     a.action = 1;
     updateBreadcrum(a);
 
-    el.append('<li data-tree=\'{"item":"'+parseInt(a.item)+'","method":"'+(parseInt(clickedAddMethodNodeDataTree.method) + 1)+'","action":""}\' class="active treeview method-node">    <a href="#"><i class="fa fa-circle-o"></i> Method '+(parseInt(clickedAddMethodNodeDataTree.method) + 1)+' <span href="#" class="reorder-up pull-right" style="padding-right:70px"><i class="fa fa-fw fa-arrow-up"></i></span><span href="#" class="reorder-down pull-right" style="padding-right:40px"><i class="fa fa-fw fa-arrow-down"></i></span> <i class="fa fa-angle-left pull-right"></i>    <span class="label pull-right bg-red delete-method-node"><i class="fa fa-times"></i></span>    </a>    <ul class="treeview-menu action-tree" style="display: none;">    <li data-tree=\'{"item":"' + parseInt(clickedAddMethodNodeDataTree.item) + '","method":"'+(parseInt(clickedAddMethodNodeDataTree.method) + 1)+'","action":"1"}\' class="action-node active">    <a href="#"><i class="fa fa-circle-o"></i> Action 1 <!--<span class="label pull-right bg-red delete-action-node"><i class="fa fa-times"></i></span>--></a>    </li>    <li data-tree=\'{"item":"'+parseInt(a.item)+'","method":"'+(parseInt(clickedAddMethodNodeDataTree.method) + 1)+'","action":"1"}\' class="add-action"><a href="#" class="copy-action"><i class="fa fa-copy text-lime"></i> <span>Duplicate</span></a></li>    </ul>    </li>');
+    el.append('<li data-tree=\'{"item":"'+parseInt(a.item)+'","method":"'+(parseInt(clickedAddMethodNodeDataTree.method) + 1)+'","action":""}\' class="active treeview method-node">    <a href="#"><i class="fa fa-circle-o"></i> Method <span class="method-name">'+(parseInt(clickedAddMethodNodeDataTree.method) + 1)+'</span> <span href="#" class="reorder-up pull-right" style="padding-right:70px"><i class="fa fa-fw fa-arrow-up"></i></span><span href="#" class="reorder-down pull-right" style="padding-right:40px"><i class="fa fa-fw fa-arrow-down"></i></span> <i class="fa fa-angle-left pull-right"></i>    <span class="label pull-right bg-red delete-method-node"><i class="fa fa-times"></i></span>    </a>    <ul class="treeview-menu action-tree" style="display: none;">    <li data-tree=\'{"item":"' + parseInt(clickedAddMethodNodeDataTree.item) + '","method":"'+(parseInt(clickedAddMethodNodeDataTree.method) + 1)+'","action":"1"}\' class="action-node active">    <a href="#"><i class="fa fa-circle-o"></i> Action 1 <!--<span class="label pull-right bg-red delete-action-node"><i class="fa fa-times"></i></span>--></a>    </li>    <li data-tree=\'{"item":"'+parseInt(a.item)+'","method":"'+(parseInt(clickedAddMethodNodeDataTree.method) + 1)+'","action":"1"}\' class="add-action"><a href="#" class="copy-action"><i class="fa fa-copy text-lime"></i> <span>Duplicate</span></a></li>    </ul>    </li>');
 
 }
 
@@ -70,8 +70,7 @@ $('.sidebar-menu').on('click', '.add-method', function(e) {
 
         var methodTree = el.parent('.method-tree');
         addNewMethod(methodTree, clickedAddMethodNodeDataTree);
-        el.prev().find('.delete-method-node').remove();
-		el.parent().find('.duplicate-method').remove();
+        el.parent().find('.duplicate-method').remove();
         el.remove();
 
 		methodTree.append('<li data-tree=\'{"item":"' + (parseInt(clickedAddMethodNodeDataTree.item)) + '","method":"' + (parseInt(clickedAddMethodNodeDataTree.method) + 1) + '","action":""}\' class="add-method"><a href="#"><i class="fa fa-plus-square-o text-aqua"></i> <span>Add New Method</span></a></li><li data-tree=\'{"item":"' + (parseInt(clickedAddMethodNodeDataTree.item)) + '","method":"' + (parseInt(clickedAddMethodNodeDataTree.method) + 1) + '","action":""}\' class="duplicate-method"><a href="#"><i class="fa fa-copy text-aqua"></i> <span>Duplicate Method</span></a></li>');
@@ -197,22 +196,28 @@ $('.sidebar-menu').on('click', '.delete-method-node', function(e) {
 
     $('.method-node').removeClass('active');
 
-    var el = $(this);
-
-    var methodTree = el.parent().parent('.method-node');
-
-    methodTree.prev().find('a').first().append('<span class="label pull-right bg-red delete-method-node"><i class="fa fa-times"></i></span>');
-
-    var currentAddMethodData = methodTree.next().data('tree');
-
-    var updatedAddMethodData = {"item":currentAddMethodData.item,"method":(parseInt(currentAddMethodData.method) - 1),"action":""};
-    methodTree.next().data('tree', updatedAddMethodData);
-
-    updateBreadcrum({"item":"","method":"","action":""});
-    methodTree.remove();
-
-    taskData.items[parseInt(currentAddMethodData.item)-1].methods.splice(parseInt(currentAddMethodData.method)-1, 1);
+    var methodTree = $(this).parent().parent('.method-node');
+    
+	var currentAddMethodData = JSON.parse(methodTree.attr('data-tree'));
+	var updatedAddMethodData;
+	var methodNumber;
 	
+	taskData.items[parseInt(currentAddMethodData.item)-1].methods.splice(parseInt(currentAddMethodData.method)-1, 1);
+	
+	methodTree.nextAll().each(function() {
+		currentAddMethodData = JSON.parse($(this).attr('data-tree'));
+		methodNumber = (parseInt(currentAddMethodData.method) - 1);
+		
+		$(this).find(".method-name").html(methodNumber);
+		
+		updatedAddMethodData = '{"item":'+currentAddMethodData.item+',"method":'+methodNumber+',"action":""}';
+		
+    	$(this).attr('data-tree', updatedAddMethodData); 
+    });
+	
+	updateBreadcrum({"item":"","method":"","action":""});
+    methodTree.remove();
+    
 	localStorage.setItem('taskData', JSON.stringify(taskData));
     renderCurrentActionList();
     refreshForm();
