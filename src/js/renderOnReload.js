@@ -76,25 +76,31 @@ var renderPathwayFromLsm = function(){
 
     // iterate pathwayListData & append
 
-    pathwayListData.forEach( function (arrayItem)
-    {
+    for (var q = 0; q < pathwayListData.length; q += 2) {
+        var arrayItem = pathwayListData[q];
+
         var tempStr = '';
 
-        console.log((arrayItem.toString().split(',')));
+        if(arrayItem.constructor === Array){
+            console.log((arrayItem.toString().split(',')));
 
-        var tempArr = (arrayItem.toString().split(','));
-        console.log(tempArr.length);
-        for (var i = 1; i <= tempArr.length; i++) {
+            var tempArr = (arrayItem.toString().split(','));
+            console.log(tempArr.length);
+            for (var i = 1; i <= tempArr.length; i++) {
 
-            tempStr += 'M-' + tempArr[i].trim().replace('"','').replace('"','') + '&nbsp;&nbsp;';
+                tempStr += 'M-' + tempArr[i].trim().replace('"','').replace('"','') + '&nbsp;&nbsp;';
 
-            i++;
+                i++;
+            }
+
+            console.log(tempStr);
         }
+        tempStr += ' : ' + pathwayListData[q+1];
 
-        console.log(tempStr);
+        $('#pathwayList').append('<li><div class=" bg-gray" style="position: relative; z-index: auto; left: 0px; top: 0px; padding: 5px 15px 5px 5px; margin: 2px; color: black">'
+        +tempStr.toString()+'<a href="#" class="deletePathway"><span class="label button pull-right bg-red delete-method-node"><i class="fa fa-times"></i></span></a></div></li>');
 
-        $('#pathwayList').append('<li><div class=" bg-green" style="position: relative; z-index: auto; left: 0px; top: 0px; padding: 5px; margin: 2px">'+tempStr.toString()+' <a href="#" class="deletePathway"><span class="label button pull-right bg-red delete-method-node"><i class="fa fa-times"></i></span></a></div></li>');
-    })
+    }
 
 };
 
