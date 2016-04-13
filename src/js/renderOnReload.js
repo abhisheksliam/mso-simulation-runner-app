@@ -74,8 +74,6 @@ var renderPathwayFromLsm = function(){
     }
 
 
-    // iterate pathwayListData & append
-
     for (var q = 0; q < pathwayListData.length; q += 2) {
         var arrayItem = pathwayListData[q];
 
