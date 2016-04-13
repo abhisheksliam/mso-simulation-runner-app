@@ -265,28 +265,15 @@ var initCurrentActionData = function(callback){
         values: []
     };
 
-    if(taskData.items[parseInt(currentItemNumber)-1].methods[parseInt(currentMethodNumber)-1]){
-
-        if(taskData.items[parseInt(currentItemNumber)-1].methods[parseInt(currentMethodNumber)-1].init){
+    if((taskData.items[parseInt(currentItemNumber)-1].methods[parseInt(currentMethodNumber)-1]) && (taskData.items[parseInt(currentItemNumber)-1].methods[parseInt(currentMethodNumber)-1].init)) {
 
             currentActionDetails.name = $('.functionDisplayName').attr('name');
             currentActionDetails.syntax = $('.functionDisplayName').text().trim();
             currentActionDetails.init = true;
 
             // update tree view
-            $('.item-node').eq(currentItemNumber-1).find('.method-node').eq(currentMethodNumber -1).find('.action-node').eq(currentActionNumber -1).find('a').html('<i class="fa fa-circle-o"></i>' + currentActionDetails.name);
+	        $('.item-node').eq(currentItemNumber-1).find('.method-node').eq(currentMethodNumber -1).find('.action-node').eq(currentActionNumber -1).find('.action-name').html(currentActionDetails.name);
 
-            if($('.item-node').eq(currentItemNumber-1).find('.method-node').eq(currentMethodNumber -1).find('.action-node').eq(currentActionNumber -1).next('li').next('li').length == 0){
-                $('.item-node').eq(currentItemNumber-1).find('.method-node').eq(currentMethodNumber -1).find('.action-node').eq(currentActionNumber -1).find('.delete-action-node').remove();
-
-                if($('.item-node').eq(currentItemNumber-1).find('.method-node').eq(currentMethodNumber -1).find('.action-node').eq(currentActionNumber -1).index() >0){
-
-                    $('.item-node').eq(currentItemNumber-1).find('.method-node').eq(currentMethodNumber -1).find('.action-node').eq(currentActionNumber -1).find('a').append('<span class="label pull-right bg-red delete-action-node"><i class="fa fa-times"></i></span>');
-                }
-
-            }
-
-            // - ends
             if($( "#actionDetailsForm input").length){
 
                 $( "#actionDetailsForm input" ).each(function( index ) {
@@ -302,12 +289,7 @@ var initCurrentActionData = function(callback){
             addValue(taskData.items[parseInt(currentItemNumber)-1].methods[parseInt(currentMethodNumber)-1],'actions', (parseInt(currentActionNumber)-1) ,currentActionDetails);
 
             localStorage.setItem('taskData', JSON.stringify(taskData));
-        }
-        else{
-            alert('Enter Method Data First')
-        }
-    }
-    else{
+    } else {
         alert('Enter Method Data First')
     }
 
@@ -369,9 +351,8 @@ $( "#saveActionDetails" ).click(function() {
 
 
 $( "#exportXMLTop" ).click(function() {
-    console.log();
     taskData =   localStorage.getItem('taskData');
-    console.log('console.log(taskData.name) ' + taskData);
+    console.log('taskData.name: ' , taskData);
 });
 
 
@@ -379,57 +360,6 @@ $( "#resetLSM" ).click(function() {
     resetLSM();
     initactionList();
     window.location.reload(true);
-
-/*    var userAppType =   JSON.parse(localStorage.getItem('userAppType'));
-
-
-    //var taskData =   JSON.parse(localStorage.getItem('taskData'));
-
-    if((userAppType != null) && (userAppType != undefined) && (userAppType != "")){
-        console.log('in 1')
-
-        var currentApplication = userAppType;
-        var filteredActionList;
-
-        if(currentApplication == 'excel'){
-            filteredActionList = actionList.excel;
-        }
-        if(currentApplication == 'word'){
-            filteredActionList = actionList.word;
-        }
-        if(currentApplication == 'ppt'){
-            filteredActionList = actionList.ppt;
-        }
-        if(currentApplication == 'access'){
-            filteredActionList = actionList.access;
-        }
-
-        for(var i=0;i<filteredActionList.length;i++){
-
-            $("#layout-skins-list tbody").append('                <tr class="action-details-button">                  <td><code>'+filteredActionList[i]+'</code></td>                  <td><a href="#" class="btn btn-primary btn-xs action-details-button"><i class="fa fa-eye"></i></a></td>                </tr>')
-        }
-    }*/
-
 });
 
-//resetLSM();
-
-
-
-/**
- * validate init task lsm
- * save method data to lsm
- */
-
-
-
-
-
-
-
-
-/**
- * validate init task & method
- * save action data to lsm
- */
 
