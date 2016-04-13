@@ -78,7 +78,7 @@ var fillMethodDetails = function(){
         $('#method-type').val('');
     };
 
-    if(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1]){
+/*    if(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1]){
         var techGroups = document.getElementById("method-group");
 
         $('select#method-group option').removeAttr("selected");
@@ -95,7 +95,7 @@ var fillMethodDetails = function(){
     }
     else{
         $('#method-group').val('');
-    };
+    };*/
 };
 
 var updateDetailsForm = function(functionSyntax, userInputArray){

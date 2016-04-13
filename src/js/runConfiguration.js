@@ -318,8 +318,6 @@ var getPathwayJava = function(){
 
     var postJout = ' }';
 
-
-
     // start iterate
     var pathwayListData
 
@@ -331,15 +329,20 @@ var getPathwayJava = function(){
 
     var testCount = 0;
 if(pathwayListData !== undefined){
-    pathwayListData.forEach( function (arrayItem)
-    {
+    for (var q = 0; q < pathwayListData.length; q += 2) {
+        var arrayItem = pathwayListData[q];
+
+
+        if(arrayItem.constructor === Array){
 
         // todo: create runj from taskdata lsm
         var runJ = '';
 
         var preJin = '\n    ' +
             '@Test (groups = {' +
-            '"Acceptance", "Primary"' + //todo: change this
+            //'"Acceptance", "Primary"' + //todo: change this
+            pathwayListData[q+1] +
+
             '})        public void ' +
             ((taskData.id).replace(/\./gi, "_")).trim()
             +
@@ -351,8 +354,7 @@ if(pathwayListData !== undefined){
         var postJ = 'Thread.sleep(3000);            ' +
             'System.out.println("DONE.");        }   \n';
 
-        arrayItem.forEach( function (arrayItem2)
-        {
+        arrayItem.forEach(function (arrayItem2) {
 
             runJ = runJ + 'getAndPerformTask(' +
             '"' +
@@ -369,7 +371,8 @@ if(pathwayListData !== undefined){
 
         runJFinal = runJFinal + js_beautify((preJin + runJ + postJ ));
 
-    });
+        }
+    };
 }
     runJFinal = runJFinal + postJout;
 
@@ -420,9 +423,9 @@ $( "#run-conf-sidebar" ).click(function() {
 
     var currentMargin = $(".content").css('margin-right');
 
-    if(currentMargin != '280px')
+    if(currentMargin != '380px')
     {
-        $(".content").css({'margin-right': '280px'});
+        $(".content").css({'margin-right': '380px'});
 
     }
     else{
@@ -437,39 +440,57 @@ var pathwayListData = [];
 
 var addToPathway = function(){
 
-    if(localStorage.getItem('pathwayListData')){
+    var getPathwayGroup = function(){
+        var rr2 = [];
+        $('#pathway-group :selected').each(function(i, selected){
+            rr2[i] = $(selected).text();
+        });
+        return '"' + rr2.toString().replace(/,/g, '","') + '"';
+    };
+
+    if($('#pathway-group :selected').length != 0){
+
+        if(localStorage.getItem('pathwayListData')){
 
             pathwayListData = JSON.parse(localStorage.getItem('pathwayListData'));
         }
 
-    var pathwayListItem = '';
-    var currentPathway = [];
+        var pathwayListItem = '';
+        var currentPathway = [];
 
-    for(var i=0;i<taskData.items.length;i++){
+        for(var i=0;i<taskData.items.length;i++){
 
-        if(taskData.items[i].init){
+            if(taskData.items[i].init){
 
-            //if($('#run-item-'+(i+1)).is(':checked') == true){
+                //if($('#run-item-'+(i+1)).is(':checked') == true){
 
                 var methodChecked = $('input[name="item'+(i+1)+'-method"]:checked', '#item'+(i+1)+'-methods').data('method');
 
-
                 currentPathway.push('"'+(i+1)+'", "'+methodChecked+'"') ;
-                pathwayListItem = pathwayListItem + ' M-' + methodChecked;
+                pathwayListItem = pathwayListItem + ' M-' + methodChecked ;
 
-        }
-        else{
+            }
+            else{
 
+            }
         }
+
+        console.log(pathwayListData);
+
+        pathwayListItem = pathwayListItem + ' : ' + getPathwayGroup();
+
+        pathwayListData.push(currentPathway,getPathwayGroup());
+
+        localStorage.setItem('pathwayListData', JSON.stringify(pathwayListData));
+
+        $('#pathwayList').append('<li><div class=" bg-gray" style="position: relative; z-index: auto; left: 0px; top: 0px; padding: 5px 15px 5px 5px; margin: 2px; color: black">'
+        +pathwayListItem
+        +' <a href="#" class="deletePathway"><span class="label button pull-right bg-red delete-method-node"><i class="fa fa-times"></i></span></a></div></li>');
+
     }
-
-    console.log(pathwayListData);
-
-    pathwayListData.push(currentPathway);
-
-    localStorage.setItem('pathwayListData', JSON.stringify(pathwayListData));
-
-    $('#pathwayList').append('<li><div class=" bg-green" style="position: relative; z-index: auto; left: 0px; top: 0px; padding: 5px; margin: 2px">'+pathwayListItem+' <a href="#" class="deletePathway"><span class="label button pull-right bg-red delete-method-node"><i class="fa fa-times"></i></span></a></div></li>');
+    else{
+        alert('Select Pathway Group');
+    }
 };
 
 $( "#addToPathwayList" ).click(function() {
@@ -480,10 +501,12 @@ $('#pathwayList').on('click', '.deletePathway', function(e) {
     var pathwayListData =   JSON.parse(localStorage.getItem('pathwayListData'));
 
     var el = $(this);
-    console.log('el.parent().index() '+el.parent().parent().index());
+    var delIndex = el.parent().parent().index();
+    //console.log('el.parent().index() '+el.parent().parent().index());
 
     el.parent().parent().remove();
-    pathwayListData.splice((el.parent().parent().index() + 1), 1);
+    console.log(delIndex);
+    pathwayListData.splice((delIndex * 2), 2);
 
     localStorage.setItem('pathwayListData', JSON.stringify(pathwayListData));
     e.stopPropagation();
@@ -493,9 +516,6 @@ $("#exportFinalTop").click(function(){
 
     console.log('inside exportFinalTop')
     var prettyRunXML = updateRunXml();
-
-    //console.log('prettyRunXML');
-    //console.log(prettyRunXML);
     var prettyRunJava = getRunJava();
 
     var distXML = getdistXML();

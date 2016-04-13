@@ -79,7 +79,6 @@ var taskData = {
 var currentMethodDetails = {
     init: false,
     type:'',
-    group:'',
     actions:[]
 };
 
@@ -147,7 +146,6 @@ resetLSM = function(){
     currentMethodDetails = {
         init: false,
         type:'',
-        group:'',
         actions:[]
     };
 
@@ -211,23 +209,15 @@ var initCurrentMethodData = function(callback){
         });
     var methodType =  rr1.toString();
 
-        var rr2 = [];
-        $('#method-group :selected').each(function(i, selected){
-            rr2[i] = $(selected).text();
-        });
-    var methodGroup = rr2.toString();
-
     currentMethodDetails = {
         init: false,
         type:'',
-        group:'',
         actions:[]
     };
 
     if(taskData.init){
 
         currentMethodDetails.type = methodType;
-        currentMethodDetails.group = methodGroup;
         currentMethodDetails.init = true;
 
         console.log('currentItemNumber' + currentItemNumber);
@@ -237,7 +227,6 @@ var initCurrentMethodData = function(callback){
             if(taskData.items[parseInt(currentItemNumber) - 1].methods[(parseInt(currentMethodNumber)-1)].init){
 
                 taskData.items[parseInt(currentItemNumber) - 1].methods[(parseInt(currentMethodNumber)-1)].type  = methodType;
-                taskData.items[parseInt(currentItemNumber) - 1].methods[(parseInt(currentMethodNumber)-1)].group = methodGroup;
 
             }
         }catch(er){
