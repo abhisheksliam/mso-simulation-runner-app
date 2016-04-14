@@ -49,206 +49,13 @@ $("#searchActions").keyup(function(){
         }
     });
 
-    // Update the count
-    var numberItems = count;
-    console.log("Number of Comments = "+count);
 });
 
-actionList = {
-
-    action  : [],
-
-    excel   :   [
-        "clickAndWait(String elementName)",
-        "selectCell(String cellName)",
-        "selectCellRange(String cellRange, Method methodType)",
-        "rightClickOnCell(String cellName)",
-        "doubleClick(String elementName)",
-        "rightClick(String elementName)",
-        "enterText(String text)",
-        "pressNreleaseKey(MyKeys keyName)",
-        "pressKey(MyKeys keyName)",
-        "pressKeyMultipleTimes(MyKeys keyName , String numOfTimes)",
-        "releaseKey(MyKeys keyName)",
-        "waitFor()",
-        "release()",
-        "clickAndHold(String elementName)",
-        "moveByOffset(int xOffset, int yOffset)",
-        "moveToElementCenter(String elementName)",
-        "dragAndDropByPosBased(String draggable, int xpos, int ypos)",
-        "clickAt(String elementName, int pos)",
-        "clickAtPercent(String elementName, int xposPercent, int yposPercent)",
-        "selectColumn(String columnName)",
-        "selectRow(int rowNumber)",
-        "selectMultiParaText(String elementNameStart, String elementNameEnd, int Start, int End, Method methodType)",
-        "selectText(String elementName, int start, int end, Method methodType)",
-        "click(String elementName)",
-        "clickAtCurrentPos()",
-        "clickAndHoldCurrentPos()",
-		"clickMultipleTimes(String elementName , String numOfTimes)",
-        "doubleClickAndWait()",
-        "rightClickCurrentPos()",
-        "dragAndDropBy(String source, String target)",
-        "dragAndDropByOffset(String elementName, int xOffset, int yOffset)",
-        "enterTextInElement(String elementName, String text)",
-        "pressControlA()",
-        "pressControlEND()",
-        "pressControlENTER()",
-        "pressControlHOME()",
-        "moveToElement(String moveToElement, int xOffset, int yOffset)",
-        "moveToElementPercent(String elementName, double xOffsetPercent, double yOffsetPercent)",
-        "releaseElement(String elementName)",
-        "waitForSec(int time)",
-        "clearText(String elementName)",
-        "scroll(String elementName)",
-        "selectFromDropdown(String elementName, String option)",
-        "selectInputText(String elementName)",
-        "skipToNextItem()"
-    ]
-    ,
-    word: [
-        "clickAt(String elementName, int pos)",
-        "clickAtPercent(String elementName, int xposPercent, int yposPercent)",
-        "dragAndDropSlideInSlidePane(String firstSlideNumber, String secondSlideNumber)",
-        "rightClickSlideInSlidePane(String slideNumber)",
-        "selectMultiParaText(String elementNameStart, String elementNameEnd, int Start, int End, Method methodType)",
-        "selectSlideFromSlidePane(String slideNumber)",
-        "selectText(String elementName, int start, int end, Method methodType)",
-        "click(String elementName)",
-        "clickAtCurrentPos()",
-        "clickAndHoldCurrentPos()",
-		"clickMultipleTimes(String elementName , String numOfTimes)",
-        "clickAndHold(String elementName)",
-        "clickAndWait(String elementName)",
-        "doubleClickAndWait()",
-        "doubleClick(String elementName)",
-        "rightClickCurrentPos()",
-        "rightClick(String elementName)",
-        "dragAndDropBy(String source, String target)",
-        "dragAndDropByOffset(String elementName, int xOffset, int yOffset)",
-        "enterText(String text)",
-        "enterTextInElement(String elementName, String text)",
-        "pressControlA()",
-        "pressControlEND()",
-        "pressControlENTER()",
-        "pressControlHOME()",
-        "pressKey(MyKeys keyName)",
-        "pressKeyMultipleTimes(MyKeys keyName , String numOfTimes)",
-        "pressNreleaseKey(MyKeys keyName)",
-        "releaseKey(MyKeys keyName)",
-        "moveByOffset(int xOffset, int yOffset)",
-        "moveToElementCenter(String elementName)",
-        "moveToElement(String elementName, int xOffset, int yOffset)",
-        "moveToElementPercent(String elementName, double xOffsetPercent, double yOffsetPercent)",
-        "release()",
-        "releaseElement(String elementName)",
-        "waitFor()",
-        "waitForSec(int time)",
-        "clearText(String elementName)",
-        "scroll(String elementName)",
-        "selectFromDropdown(String elementName, String parameter)",
-        "selectInputText(String elementName)",
-        "skipToNextItem()"
-    ],
-    ppt: [
-        "enterText(String text)",
-        "enterTextInElement(String elementName, String text)",
-        "click(String elementName)",
-        "pressKey(MyKeys keyName)",
-        "pressKeyMultipleTimes(MyKeys keyName , String numOfTimes)",
-        "pressNreleaseKey(MyKeys keyName)",
-        "releaseKey(MyKeys keyName)",
-        "selectSlideFromSlidePane(String slideNumber)",
-        "rightClickSlideInSlidePane(String slideNumber)",
-        "dragAndDropSlideInSlidePane(String firstSlide, String secondSlide)",
-        "clickAt(String elementName, int pos)",
-        "clickAtCurrentPos()",
-        "clickAtPercent(String elementName, int xposPercent, int yposPercent)",
-        "selectFromDropdown(String elementName, String parameter)",
-        "selectInputText(String elementName)",
-        "selectText(String elementName, int start, int end, Method methodType)",
-        "selectMultiParaText(String elementNameStart, String elementNameEnd, int Start, int End, Method methodType)",
-        "doubleClick(String elementName)",
-        "doubleClickAndWait()",
-        "rightClick(String elementName)",
-        "rightClickCurrentPos()",
-        "clickAndHoldCurrentPos()",
-		"clickMultipleTimes(String elementName , String numOfTimes)",
-        "clickAndHold(String elementName)",
-        "clickAndWait(String elementName)",
-        "dragAndDropBy(String source, String target)",
-        "dragAndDropByOffset(String elementName, int xOffset, int yOffset)",
-        "moveByOffset(int xOffset, int yOffset)",
-        "moveToElementCenter(String elementName)",
-        "moveToElement(String elementName, int xOffset, int yOffset)",
-        "moveToElementPercent(String elementName, double xOffsetPercent, double yOffsetPercent)",
-        "release()",
-        "releaseElement(String elementName)",
-        "pressControlA()",
-        "pressControlEND()",
-        "pressControlENTER()",
-        "pressControlHOME()",
-        "waitFor()",
-        "waitForSec(int time)",
-        "clearText(String elementName)",
-        "scroll(String elementName)",
-        "skipToNextItem()"
-    ],
-    access  :   [
-	        "click(String elementName)",
-	        "rightClick(String elementName)",
-	        "selectInputText(String elementName)",
-	        "waitFor()",
-	        "pressKey(MyKeys keyName)",
-	        "pressKeyMultipleTimes(MyKeys keyName , String numOfTimes)",
-	        "pressNreleaseKey(MyKeys keyName)",
-	        "releaseKey(MyKeys keyName)",
-	        "enterText(String text)",
-	        "clickAt(String elementName, int pos)",
-	        "clickAtPercent(String elementName, int xposPercent, int yposPercent)",
-	        "selectMultiParaText(String elementNameStart, String elementNameEnd, int Start, int End, Method methodType)",
-	        "selectText(String elementName, int start, int end, Method methodType)",
-	        "clickAtCurrentPos()",
-	        "clickAndHoldCurrentPos()",
-			"clickMultipleTimes(String elementName , String numOfTimes)",
-	        "clickAndHold(String elementName)",
-	        "clickAndWait(String elementName)",
-	        "doubleClickAndWait()",
-	        "doubleClick(String elementName)",
-	        "rightClickCurrentPos()",
-	        "dragAndDropBy(String source, String target)",
-	        "dragAndDropByOffset(String elementName, int xOffset, int yOffset)",
-	        "enterTextInElement(String elementName, String text)",
-	        "pressControlA()",
-	        "pressControlEND()",
-	        "pressControlENTER()",
-	        "pressControlHOME()",
-	        "moveByOffset(int xOffset, int yOffset)",
-	        "moveToElementCenter(String elementName)",
-	        "moveToElement(String elementName, int xOffset, int yOffset)",
-	        "moveToElementPercent(String elementName, double xOffsetPercent, double yOffsetPercent)",
-	        "release()",
-	        "releaseElement(String elementName)",
-	        "waitForSec(int time)",
-	        "clearText(String elementName)",
-	        "scroll(String elementName)",
-	        "selectFromDropdown(String elementName, String option)",
-	        "skipToNextItem()",
-	        "selectCell(String cellName)",
-        	"selectCellRange(String cellRange, Method methodType)",
-        	"rightClickOnCell(String cellName)"
-	    ]
-};
+actionList = properties.getActionList;
 
 
 var initactionList = function(){
     $("#layout-skins-list tbody").empty();
-
-    /*    for(var i=0;i<actionList.action.length;i++){
-
-     $("#layout-skins-list tbody").append('                <tr>                  <td><code>'+actionList.excel[i]+'</code></td>                  <td><a href="#" class="btn btn-primary btn-xs action-details-button"><i class="fa fa-eye"></i></a></td>                </tr>')
-
-     }*/
 
     var taskData =   JSON.parse(localStorage.getItem('taskData'));
 
@@ -353,7 +160,7 @@ updateDetailsForm();
 $(function() {
 
     var options = {
-        source: ["ALT","ARROW_DOWN","ARROW_LEFT","ARROW_RIGHT","ARROW_UP","BACK_SPACE","CONTROL","DECIMAL","DELETE","END","ENTER","ESCAPE","F1","F10","F11","F12","F2","F3","F4","F5","F6","F7","F8","F9","HOME","PAGE_DOWN","SHIFT","SPACEBAR","TAB","CTRL"],
+        source: properties.getKeyboardActions,
         minLength: 1
     };
     var selector = '#keyName';
