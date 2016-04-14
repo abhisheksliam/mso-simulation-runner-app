@@ -304,6 +304,8 @@ var saveActionData = function(){
 
         taskData =   JSON.parse(localStorage.getItem('taskData'));
         console.log('console.log(taskData.name) ' + taskData);
+		
+		renderBalooAction('action');
     });
 
 };

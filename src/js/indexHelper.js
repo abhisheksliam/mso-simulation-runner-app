@@ -2,7 +2,7 @@
  * Created by AbhishekK on 2/2/2016.
  */
 
-function updateBreadcrum(data){
+function updateBreadcrum(data, pageView){
 
     console.log('update br called ');
     console.log(data);
@@ -26,9 +26,9 @@ function updateBreadcrum(data){
         // todo: set currentTreeNode here
 
     }
-    refreshForm();
+	
+    refreshForm(pageView);
     //setTimeout(function(){ refreshForm(); }, 500);
-
 }
 
 function addNewMethod(el,clickedAddMethodNodeDataTree){
@@ -138,6 +138,7 @@ $('.sidebar-menu').on('click', '.method-node', function(e) {
 });
 
 $('.sidebar-menu').on('click', '.action-node', function(e) {
+	
     //console.log($(event.target).parent().attr('class'));
     var targetNode = $(e.target).parent();
 
@@ -153,7 +154,7 @@ $('.sidebar-menu').on('click', '.action-node', function(e) {
     clickedAddActionNodeDataTree.action = ($(this).index() + 1);
 
     console.log(clickedAddActionNodeDataTree);
-    updateBreadcrum(clickedAddActionNodeDataTree);
+    updateBreadcrum(clickedAddActionNodeDataTree, 'action');
     $('.action-node').removeClass('active');
     el.addClass( 'active' );
     e.stopPropagation();
