@@ -2,6 +2,21 @@
  * Created by AbhishekK on 2/15/2016.
  */
 
+var getDistJson = function(){
+
+    var taskData =   JSON.parse(localStorage.getItem('taskData'));
+    var pathwayListData = [];
+
+    if(localStorage.getItem('pathwayListData')){
+        pathwayListData = JSON.parse(localStorage.getItem('pathwayListData'));
+
+    }
+
+    var jsonFileContent = '[' + JSON.stringify(taskData) +',' + JSON.stringify(pathwayListData) + ']';
+
+    return jsonFileContent;
+}
+
 
 var renderRunConfiguration = function(){
 
@@ -502,8 +517,6 @@ $('#pathwayList').on('click', '.deletePathway', function(e) {
 
     var el = $(this);
     var delIndex = el.parent().parent().index();
-    //console.log('el.parent().index() '+el.parent().parent().index());
-
     el.parent().parent().remove();
     console.log(delIndex);
     pathwayListData.splice((delIndex * 2), 2);
@@ -513,6 +526,8 @@ $('#pathwayList').on('click', '.deletePathway', function(e) {
 });
 
 $("#exportFinalTop").click(function(){
+
+    var distJson = getDistJson();
 
     console.log('inside exportFinalTop')
     var prettyRunXML = updateRunXml();
@@ -525,20 +540,20 @@ $("#exportFinalTop").click(function(){
 
     var javaFilename =    'Test_.java';
     var xmlFilename =    '_.xml';
+    var jsonFilename = '_.json';
 
     try{
         javaFilename =    'Test_' +   (taskData.id +'_'+ taskData.scenario).replace(/\./gi, "_") + '.java';
         xmlFilename =    (taskData.id +'_'+ taskData.scenario).replace(/\./gi, "_") + '.xml';
+        jsonFilename =    (taskData.id +'_'+ taskData.scenario).replace(/\./gi, "_") + '.json';
     }catch(er){
 
     }
 
-    //console.log('prettyRunJava: ' + distJava);
-
     window.open ("http://localhost:80/commit",",","menubar=1,resizable=1,width=1200,height=800");
 
     setTimeout(function(){
-        $.post("http://localhost:80/commit",{xmlFilename:xmlFilename,xmldata: prettyRunXML,javaFilename:javaFilename,javadata: prettyRunJava, distXML: distXML, distJava:distJava, appName: taskData.appName}, function(data){
+        $.post("http://localhost:80/commit",{xmlFilename:xmlFilename,xmldata: prettyRunXML,javaFilename:javaFilename,javadata: prettyRunJava, distXML: distXML, distJava:distJava, appName: taskData.appName, jsonFilename: jsonFilename,distJson:distJson }, function(data){
             if(data==='done')
             {
                 console.log("post success");

@@ -9,7 +9,7 @@ At the top of the testing using selenium framework, this tool provides:<br />
 ## Usage<br />
 
 **Scripting**<br />
-1. Launch URL: http://abhishekcompro.github.io<br />
+1. Launch URL: http://sim5Runner.github.io<br />
 2. User select application type<br />
 3. Add task details<br />
 4. Add multiple methods and actions<br />
