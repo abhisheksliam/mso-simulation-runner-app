@@ -22,7 +22,6 @@ var jsonToFile = function(){
 };
 
 $( "#downloadTaskJSON" ).on( "click", function() {
-
     jsonToFile();
 });
 
@@ -39,7 +38,19 @@ $('#loadTaskJson').click(function() {
             var data1 = JSON.parse(e.target.result);
             if(Array.isArray(data1)){
                 localStorage.setItem('taskData', (JSON.stringify(JSON.parse(e.target.result)[0])));
-                localStorage.setItem('pathwayListData', (JSON.stringify(JSON.parse(e.target.result)[1])));
+
+                var keepPathwayData = false;
+                var _x = JSON.parse(e.target.result)[1];
+                _x.forEach(function(arrayItem) {
+                    if(arrayItem.constructor !== Array) {
+                        keepPathwayData = true;
+                    }
+                });
+
+                if(keepPathwayData){
+                    localStorage.setItem('pathwayListData', (JSON.stringify(JSON.parse(e.target.result)[1])));
+                }
+
                 window.location.reload(true);
             }else{
                 localStorage.setItem('taskData', (JSON.stringify(JSON.parse(e.target.result))));

@@ -32,16 +32,10 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="src/css/dashboard.css">
+
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-  <!--<script src="js/jquery.auto-complete.js"></script>-->
-  <style>
-    body{
-      min-width:1000px; /* suppose you want minimun width of 1000px */
-    }
-
-  </style>
 
 </head>
 <body class="hold-transition skin-blue sidebar-mini" id="_body">
@@ -170,13 +164,11 @@
           <ul class="treeview-menu method-tree">
             <li data-tree='{"item":"1","method":"1","action":""}' class="active treeview method-node">
               <a href="#"><i class="fa fa-circle-o"></i> Method <span class="method-name">1</span><span href="#" class="reorder-up pull-right" style="padding-right:70px"><i class="fa fa-fw fa-arrow-up"></i></span><span href="#" class="reorder-down pull-right" style="padding-right:40px"><i class="fa fa-fw fa-arrow-down"></i></span>
-                <i class="fa fa-angle-left pull-right"></i><span class="label pull-right bg-red delete-method-node"><i class="fa fa-times"></i></span>
+                <i class="fa fa-angle-left pull-right"></i><span class="label pull-right bg-orange delete-method-node"><i class="fa fa-times"></i></span>
               </a>
               <ul class="treeview-menu action-tree" style="display: none;">
                 <li data-tree='{"item":"1","method":"1","action":"1"}' class="active action-node">
-                  <a href="#"><i class="fa fa-circle-o"></i> Action 1
-                    <!--<span class="label pull-right bg-red delete-action-node"><i class="fa fa-times"></i></span>-->
-                  </a>
+                  <a href="#"><i class="fa fa-circle-o"></i> <span class="action-name">Action 1</span></a>
                 </li>
                 <li data-tree='{"item":"1","method":"1","action":"1"}' class="add-action"><a href="#" class="copy-action"><i class="fa fa-copy text-lime"></i> <span>Duplicate</span></a></li>
               </ul>
@@ -194,14 +186,12 @@
           </a>
           <ul class="treeview-menu method-tree">
             <li data-tree='{"item":"2","method":"1","action":""}' class="active treeview method-node">
-              <a href="#"><i class="fa fa-circle-o"></i> Method 1 <span href="#" class="reorder-up pull-right" style="padding-right:70px"><i class="fa fa-fw fa-arrow-up"></i></span><span href="#" class="reorder-down pull-right" style="padding-right:40px"><i class="fa fa-fw fa-arrow-down"></i></span> <i class="fa fa-angle-left pull-right"></i>
-                <i class="fa fa-angle-left pull-right"></i><span class="label pull-right bg-red delete-method-node"><i class="fa fa-times"></i></span>
+              <a href="#"><i class="fa fa-circle-o"></i> Method <span class="method-name">1</span><span href="#" class="reorder-up pull-right" style="padding-right:70px"><i class="fa fa-fw fa-arrow-up"></i></span><span href="#" class="reorder-down pull-right" style="padding-right:40px"><i class="fa fa-fw fa-arrow-down"></i></span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-angle-left pull-right"></i><span class="label pull-right bg-orange delete-method-node"><i class="fa fa-times"></i></span>
               </a>
               <ul class="treeview-menu action-tree" style="display: none;">
                 <li data-tree='{"item":"2","method":"1","action":"1"}' class="active action-node">
-                  <a href="#"><i class="fa fa-circle-o"></i> Action 1
-                    <!--<span class="label pull-right bg-red delete-action-node"><i class="fa fa-times"></i></span>-->
-                  </a>
+                  <a href="#"><i class="fa fa-circle-o"></i> <span class="action-name">Action 1</span> </a>
                 </li>
                 <li data-tree='{"item":"2","method":"1","action":"1"}' class="add-action"><a href="#" class="copy-action"><i class="fa fa-copy text-lime"></i> <span>Duplicate</span></a></li>
               </ul>
@@ -219,14 +209,12 @@
           </a>
           <ul class="treeview-menu method-tree">
             <li data-tree='{"item":"3","method":"1","action":""}' class="active treeview method-node">
-              <a href="#"><i class="fa fa-circle-o"></i> Method 1 <span href="#" class="reorder-up pull-right" style="padding-right:70px"><i class="fa fa-fw fa-arrow-up"></i></span><span href="#" class="reorder-down pull-right" style="padding-right:40px"><i class="fa fa-fw fa-arrow-down"></i></span> <i class="fa fa-angle-left pull-right"></i>
-                <i class="fa fa-angle-left pull-right"></i><span class="label pull-right bg-red delete-method-node"><i class="fa fa-times"></i></span>
+              <a href="#"><i class="fa fa-circle-o"></i> Method <span class="method-name">1</span><span href="#" class="reorder-up pull-right" style="padding-right:70px"><i class="fa fa-fw fa-arrow-up"></i></span><span href="#" class="reorder-down pull-right" style="padding-right:40px"><i class="fa fa-fw fa-arrow-down"></i></span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-angle-left pull-right"></i><span class="label pull-right bg-orange delete-method-node"><i class="fa fa-times"></i></span>
               </a>
               <ul class="treeview-menu action-tree" style="display: none;">
                 <li data-tree='{"item":"3","method":"1","action":"1"}' class="active action-node">
-                  <a href="#"><i class="fa fa-circle-o"></i> Action 1
-                    <!--<span class="label pull-right bg-red delete-action-node"><i class="fa fa-times"></i></span>-->
-                  </a>
+                  <a href="#"><i class="fa fa-circle-o"></i> <span class="action-name">Action 1</span> </a>
                 </li>
                 <li data-tree='{"item":"3","method":"1","action":"1"}' class="add-action"><a href="#" class="copy-action"><i class="fa fa-copy text-lime"></i> <span>Duplicate</span></a></li>
               </ul>
@@ -244,14 +232,12 @@
           </a>
           <ul class="treeview-menu method-tree">
             <li data-tree='{"item":"4","method":"1","action":""}' class="active treeview method-node">
-              <a href="#"><i class="fa fa-circle-o"></i> Method 1 <span href="#" class="reorder-up pull-right" style="padding-right:70px"><i class="fa fa-fw fa-arrow-up"></i></span><span href="#" class="reorder-down pull-right" style="padding-right:40px"><i class="fa fa-fw fa-arrow-down"></i></span> <i class="fa fa-angle-left pull-right"></i>
-                <i class="fa fa-angle-left pull-right"></i><span class="label pull-right bg-red delete-method-node"><i class="fa fa-times"></i></span>
+              <a href="#"><i class="fa fa-circle-o"></i> Method <span class="method-name">1</span><span href="#" class="reorder-up pull-right" style="padding-right:70px"><i class="fa fa-fw fa-arrow-up"></i></span><span href="#" class="reorder-down pull-right" style="padding-right:40px"><i class="fa fa-fw fa-arrow-down"></i></span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-angle-left pull-right"></i><span class="label pull-right bg-orange delete-method-node"><i class="fa fa-times"></i></span>
               </a>
               <ul class="treeview-menu action-tree" style="display: none;">
                 <li data-tree='{"item":"4","method":"1","action":"1"}' class="active action-node">
-                  <a href="#"><i class="fa fa-circle-o"></i> Action 1
-                    <!--<span class="label pull-right bg-red delete-action-node"><i class="fa fa-times"></i></span>-->
-                  </a>
+                  <a href="#"><i class="fa fa-circle-o"></i> <span class="action-name">Action 1</span> </a>
                 </li>
                 <li data-tree='{"item":"4,"method":"1","action":"1"}' class="add-action"><a href="#" class="copy-action"><i class="fa fa-copy text-lime"></i> <span>Duplicate</span></a></li>
               </ul>
@@ -269,14 +255,12 @@
           </a>
           <ul class="treeview-menu method-tree">
             <li data-tree='{"item":"5","method":"1","action":""}' class="active treeview method-node">
-              <a href="#"><i class="fa fa-circle-o"></i> Method 1 <span href="#" class="reorder-up pull-right" style="padding-right:70px"><i class="fa fa-fw fa-arrow-up"></i></span><span href="#" class="reorder-down pull-right" style="padding-right:40px"><i class="fa fa-fw fa-arrow-down"></i></span> <i class="fa fa-angle-left pull-right"></i>
-                <i class="fa fa-angle-left pull-right"></i><span class="label pull-right bg-red delete-method-node"><i class="fa fa-times"></i></span>
+              <a href="#"><i class="fa fa-circle-o"></i> Method <span class="method-name">1</span><span href="#" class="reorder-up pull-right" style="padding-right:70px"><i class="fa fa-fw fa-arrow-up"></i></span><span href="#" class="reorder-down pull-right" style="padding-right:40px"><i class="fa fa-fw fa-arrow-down"></i></span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-angle-left pull-right"></i><span class="label pull-right bg-orange delete-method-node"><i class="fa fa-times"></i></span>
               </a>
               <ul class="treeview-menu action-tree" style="display: none;">
                 <li data-tree='{"item":"5","method":"1","action":"1"}' class="active action-node">
-                  <a href="#"><i class="fa fa-circle-o"></i> Action 1
-                    <!--<span class="label pull-right bg-red delete-action-node"><i class="fa fa-times"></i></span>-->
-                  </a>
+                  <a href="#"><i class="fa fa-circle-o"></i> <span class="action-name">Action 1</span> </a>
                 </li>
                 <li data-tree='{"item":"5","method":"1","action":"1"}' class="add-action"><a href="#" class="copy-action"><i class="fa fa-copy text-lime"></i> <span>Duplicate</span></a></li>
               </ul>
@@ -431,6 +415,14 @@
           </h1>-->
 
         </section>
+		  
+		<section class="content-description">
+			<div class="col-md-12">
+				<div class="box box-primary baloo-description">
+					
+				</div>
+			</div>
+		</section>
 
   <div class="item-details-section">
 
@@ -444,21 +436,6 @@
           <div class="form-group">
             <label>Select Method Type</label>
             <select multiple="" class="form-control" type="text" id="method-type" style="height: 200px">
-              <option value="Ribbon">Ribbon</option>
-              <option value="Keyboard">Keyboard</option>
-              <option value="Toolbar">Toolbar</option>
-              <option value="Mouse">Mouse</option>
-              <option value="Shortcut Menu">Shortcut Menu</option>
-              <option value="Other">Other</option>
-              <option value="Menu">Menu</option>
-              <option value="Right - Click">Right - Click</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label>Select Method Groups</label>
-            <select multiple="" class="form-control" type="text" id="method-group" style="height: 200px">
-              <option value="Primary">Primary</option>
               <option value="Ribbon">Ribbon</option>
               <option value="Keyboard">Keyboard</option>
               <option value="Toolbar">Toolbar</option>
@@ -632,27 +609,44 @@
     </section><!-- /.content -->
   </div><!-- /.content-wrapper -->
 
-  <footer class="main-footer">
+<!--  <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 1.2
     </div>
-    <strong>Copyright &copy; 2016-2020 <a href="#"><!--Compro Technologies Pvt Ltd--></a>.</strong> All rights reserved.
-  </footer>
+    <strong>Copyright &copy; 2016-2020 <a href="#">&lt;!&ndash;Compro Technologies Pvt Ltd&ndash;&gt;</a>.</strong> All rights reserved.
+  </footer>-->
 
-  <aside class="control-sidebar control-sidebar-dark" style="margin-top: 10px">
+  <aside class="control-sidebar control-sidebar-dark" style="margin-top: 10px; height: 100%; overflow-y: scroll">
     <!-- Create the tabs -->
     <div class="pad" >
 
       <!-- User Account: style can be found in dropdown.less -->
 
-      <li class="dropdown user user-menu" style="padding: 0px 0px 15px 0px">
+<!--      <li class="dropdown user user-menu" style="padding: 0px 0px 15px 0px">
         <a href="#" class="dropdown-toggle" id="exportFinalTop" data-toggle="dropdown">
           <i class="fa fa-file text-lime"></i>
           <span class="hidden-xs">Export Files</span>
         </a>
-      </li>
+      </li>-->
+<!--      <div style=" margin: 15px 0px">
+        <a href="#" class="dropdown-toggle" id="exportFinalTop" data-toggle="dropdown">
+          <i style="font-size: 28px" class="fa fa-external-link-square text-olive"></i>
+          <span style="padding:0px 5px;font-size: 18px;color:#f5f5f5" class="text-red">Export Files To Runner</span>
+        </a>
+      </div>-->
 
-      <h4>Run Configuration</h4>
+      <label>Export Files To Server</label>
+      <a style="height: 32px; padding: 0px;background: #00acd6;border: 0px" id="exportFinalTop" class="btn btn-app">
+        <i style="padding: 5px;color:#f5f5f5" class="fa fa-external-link"></i>
+      </a>
+
+      <br>
+
+      <label>Run Task</label>
+
+      <a style="height: 32px; padding: 0px;background: #00acd6;border: 0px" id="runTaskOnServer" class="btn btn-app">
+        <i style="padding: 5px;color:#f5f5f5" class="fa fa-play"></i>
+      </a>
 
       <!-- checkbox -->
       <div class="form-group">
@@ -700,18 +694,28 @@
         <div class="form-group" id="item5-methods"></div>
       </div>
 
-      <a id="addToPathwayList" class="btn btn-app">
-        <i class="fa fa-fw fa-plus-square"></i> Add Pathway
-      </a>
+      <div class="form-group">
+        <label>Pathway Groups</label>
+        <select multiple="" class="form-control" type="text" id="pathway-group" style="height: 200px">
+          <option value="Primary">Primary</option>
+          <option value="Ribbon">Ribbon</option>
+          <option value="Keyboard">Keyboard</option>
+          <option value="Toolbar">Toolbar</option>
+          <option value="Mouse">Mouse</option>
+          <option value="Shortcut Menu">Shortcut Menu</option>
+          <option value="Other">Other</option>
+          <option value="Menu">Menu</option>
+          <option value="Right - Click">Right - Click</option>
+        </select>
+      </div>
 
-      <a id="runTaskOnServer" class="btn btn-app">
-        <i class="fa fa-play"></i> Run
+      <label>Add Pathway</label>
+      <a style="height: 32px; padding: 0px;background: #00acd6;border: 0px" id="addToPathwayList" class="btn btn-app">
+        <i style="padding: 5px;color:#f5f5f5" class="fa fa-plus-square"></i>
       </a>
 
       <div>
-        <h5>Pathways: </h5>
         <ul id="pathwayList"></ul>
-
       </div>
 
     </div>
@@ -743,6 +747,7 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <!--<script src="vendor/dist/js/pages/dashboard2.js"></script>-->
 <!-- AdminLTE for demo purposes -->
+<script src="Simfile.js"></script>
 <script src="vendor/dist/js/demo.js"></script>
 <script src="./src/js/beautify.js"></script>
 <script src="./src/js/indexHelper.js"></script>

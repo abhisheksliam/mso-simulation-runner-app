@@ -120,22 +120,26 @@ app.get('/commit',function(req,res){
 app.post('/commit',function(req,res){
 
   var xmldata = req.body.distXML;
-  console.log("inside commit " + xmldata);
 
   var javadata = req.body.distJava;
-  console.log("inside commit " + javadata);
+
+  var jsondata = req.body.distJson;
 
   var xmlDistFilename = req.body.xmlFilename;
   var javaDistFilename = req.body.javaFilename;
+  var jsonDistFilename = req.body.jsonFilename;
+
   var appName = req.body.appName;
 
-  console.log("inside commit xmlFilename " + xmlDistFilename);
-  console.log("inside commit javaFilename " + javaDistFilename);
   try{
     db.push("/xmlDist",xmldata,false);
     db.push("/javaDist",javadata,false);
+    db.push("/jsonDist",jsondata,false);
+
     db.push("/xmlDistFilename",xmlDistFilename,false);
     db.push("/javaDistFilename",javaDistFilename,false);
+    db.push("/jsonDistFilename",jsonDistFilename,false);
+
     db.push("/appName",appName,false);
     _appName = appName;
   }catch(err){
@@ -302,13 +306,20 @@ app.get('/generateTestFilesDist',function(req,res){
 
   var xmlDist ='';
   var javaDist ='';
+  var jsonDist ='';
+
   var xmlDistFilename ='' ;
   var javaDistFilename ='';
+  var jsonDistFilename ='';
+
   try{
     xmlDist = db.getData("/xmlDist");
     javaDist = db.getData("/javaDist");
+    jsonDist = db.getData("/jsonDist");
+
     xmlDistFilename = db.getData("/xmlDistFilename");
     javaDistFilename = db.getData("/javaDistFilename");
+    jsonDistFilename = db.getData("/jsonDistFilename");
 
   }catch(err){
     console.log(err)
@@ -317,7 +328,7 @@ app.get('/generateTestFilesDist',function(req,res){
 
   var xmlbasepath = _localSrcBasepath +"\\test\\resources\\taskXML"+_taskXmlPath+"\\"+xmlDistFilename;
   var javabasepath = _localSrcBasepath +"\\test\\java\\sims\\testcase\\"+_appName+"\\"+javaDistFilename;
-
+  var jsonbasepath = _localSrcBasepath +"\\test\\resources\\taskXML"+_taskXmlPath+"\\"+jsonDistFilename;
 
   var dir = _localSrcBasepath +"\\test\\resources\\taskXML"+_taskXmlPath+"\\";
 
@@ -341,6 +352,14 @@ app.get('/generateTestFilesDist',function(req,res){
         }
       });
 
+      fs.writeFile(jsonbasepath, jsonDist, function(error) {
+        if (error) {
+          console.error("write error:  " + error.message);
+        } else {
+          console.log("Successful Write to " + jsonbasepath);
+        }
+      });
+
 
     });
   }
@@ -361,6 +380,15 @@ app.get('/generateTestFilesDist',function(req,res){
         console.log("Successful Write to " + javabasepath);
       }
     });
+
+    fs.writeFile(jsonbasepath, jsonDist, function(error) {
+      if (error) {
+        console.error("write error:  " + error.message);
+      } else {
+        console.log("Successful Write to " + jsonbasepath);
+      }
+    });
+
   }
 
   res.end("file write success.");
@@ -426,8 +454,6 @@ app.get('/generateTestFiles',function(req,res){
       }
     });
   }
-
-
 
   res.end("file write success.");
 });

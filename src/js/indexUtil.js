@@ -2,14 +2,6 @@
  * Created by AbhishekK on 3/23/2016.
  */
 
-
-// Put the object into storage
-//  localStorage.setItem('taskData', JSON.stringify(taskData));
-
-// Retrieve the object from storage
-//  var taskData = localStorage.getItem('taskData');
-
-
 var swapArrayElement = function(list,x,y){
     var b = list[y];
     list[y] = list[x];
@@ -23,29 +15,11 @@ $('.sidebar-menu').on('click', '.reorder-up', function() {
     // todo - update lsm for all & current node data on reorder  + update breadcrum & current node
     var $current = $('.action-node.active')
     var $previous = $current.prev('li');
-
-    /*    var _a = $current.html();
-     var _b = $previous.html();*/
-    /*    console.log('$current ' + ($current.index() + 1));
-     console.log('$next ' + ($previous.index() + 1));*/
-
     var currentIndex = ($current.index());
     var nextIndex = ($previous.index()+2);
 
     if($previous.length !== 0){
-        /*      $current.find('a').html('<i class="fa fa-circle-o"></i>Action ' + currentIndex);
-         $previous.find('a').html('<i class="fa fa-circle-o"></i>Action ' + nextIndex);*/
-
-//      remove / add delete node
-        if($current.next('li').next('li').length == 0){
-            $current.find('.delete-action-node').remove();
-
-            if($current.prev('li').index() > 0){
-                $current.prev('li').find('a').append('<span class="label pull-right bg-red delete-action-node"><i class="fa fa-times"></i></span>');
-            }
-        }
-
-//      update data
+        //      update data
         var currentAddActionData = $current.data('tree');
 
         var updatedAddActionData = {"item":currentAddActionData.item,"method":currentAddActionData.method,"action":(parseInt(currentAddActionData.action) - 1)};
@@ -56,7 +30,7 @@ $('.sidebar-menu').on('click', '.reorder-up', function() {
         $current.attr('data-tree',JSON.stringify(updatedAddActionData));
         $previous.attr('data-tree',JSON.stringify(updatedPrevAddActionData));
 
-//      update view
+		//      update view
         $current.insertBefore($previous);
 
         var a = $.extend(true, {}, updatedAddActionData);
@@ -83,10 +57,6 @@ $('.sidebar-menu').on('click', '.reorder-up', function() {
     return false;
 });
 
-/*  $(".reorder-down").click(function(){
-
- });*/
-
 $('.sidebar-menu').on('click', '.reorder-down', function() {
     var taskData =   JSON.parse(localStorage.getItem('taskData'));
     // todo - update lsm for all & current node data on reorder + update breadcrum & current node
@@ -97,27 +67,15 @@ $('.sidebar-menu').on('click', '.reorder-down', function() {
     var nextIndex = ($next.index());
 
     if($next.next('li').length !== 0){
-
-//      remove / add delete node
-        if($next.next('li').next('li').length == 0){
-            $next.find('.delete-action-node').remove();
-
-            if($current.index() > 0){
-                $current.find('a').append('<span class="label pull-right bg-red delete-action-node"><i class="fa fa-times"></i></span>');
-            }
-
-        }
-
         var currentAddActionData = $current.data('tree');
         var updatedAddActionData = {"item":currentAddActionData.item,"method":currentAddActionData.method,"action":(parseInt(currentAddActionData.action) + 1)};
-
         var previousAddActionData = $next.data('tree');
         var updatedPrevAddActionData = {"item":previousAddActionData.item,"method":previousAddActionData.method,"action":(parseInt(previousAddActionData.action) - 1)};
 
         $current.attr('data-tree', JSON.stringify(updatedAddActionData));
         $next.attr('data-tree', JSON.stringify(updatedPrevAddActionData));
 
-//      update view
+		//      update view
         $current.insertAfter($next);
 
         var a = $.extend(true, {}, updatedAddActionData);
@@ -128,7 +86,7 @@ $('.sidebar-menu').on('click', '.reorder-down', function() {
 
         console.log('currentIndex : '+currentIndex);
 
-//      swap data & save
+		//      swap data & save
 
         var updatedActions = swapArrayElement(taskData.items[(a.item - 1)].methods[(a.method - 1)].actions,currentIndex-1,(currentIndex-2));
         taskData.items[(a.item-1)].methods[(a.method-1)].actions = updatedActions;

@@ -78,7 +78,7 @@ var fillMethodDetails = function(){
         $('#method-type').val('');
     };
 
-    if(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1]){
+/*    if(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1]){
         var techGroups = document.getElementById("method-group");
 
         $('select#method-group option').removeAttr("selected");
@@ -95,7 +95,7 @@ var fillMethodDetails = function(){
     }
     else{
         $('#method-group').val('');
-    };
+    };*/
 };
 
 var updateDetailsForm = function(functionSyntax, userInputArray){
@@ -133,18 +133,20 @@ var updateDetailsForm = function(functionSyntax, userInputArray){
 
 
 
-var fillActionDetails = function(){
+var fillActionDetails = function(pageView){
 try{
     if(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].init){
 
         if(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1].init){
-            var currentActionNode = taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1];
+			var currentActionNode = taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1];
             $('.functionDisplayName').text(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1].syntax);
 
             var actionNodeFunction =  (taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1].syntax).trim().replace(/ *\([^)]*\) */g, "");
             $(".functionDisplayName").attr('name', actionNodeFunction + '()');
 
             updateDetailsForm( currentActionNode.syntax , currentActionNode.values );
+			
+			renderBalooAction(pageView);
         }
         else{
             $('.functionDisplayName').text('');
@@ -160,14 +162,25 @@ try{
 
 };
 
+var renderBalooAction = function(pageView){
+	if(pageView === undefined) {
+		$('.baloo-description').hide();
+		
+	} else if((taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].balooActions !== undefined) && (taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1].balooActionIndex !== undefined)) {
 
-var refreshForm = function(){
+		$(".baloo-description").html(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].balooActions[taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1].balooActionIndex].text);
+
+		$('.baloo-description').show();
+	}
+}
+
+var refreshForm = function(pageView){
     $('#saveActionButton').hide();
     updateCurrent(function(){
         if(taskDataFilled){
             fillTaskDetails();
             fillMethodDetails();
-            fillActionDetails();
+            fillActionDetails(pageView);
         }
     });
 };
@@ -230,11 +243,13 @@ var renderCurrentActionList = function(){
 
 $('.action-details-section').hide();
 $('.method-details-section').hide();
+$('.baloo-description').hide();
 
 $('.sidebar-menu').on('click', '.method-node', function(e) {
 
     $('.action-details-section').hide();
     $('.method-details-section').show();
+	$('.baloo-description').hide();
 
     renderCurrentActionList();
 
@@ -244,6 +259,7 @@ $('.sidebar-menu').on('click', '.add-method a', function(e) {
 
     $('.action-details-section').hide();
     $('.method-details-section').show();
+	$('.baloo-description').hide();
 
     renderCurrentActionList();
 
@@ -266,6 +282,7 @@ $('.item-node a').click(function(e) {
 
     $('.method-details-section').hide();
     $('.action-details-section').hide();
+	$('.baloo-description').hide();
 
     renderCurrentActionList();
 });
