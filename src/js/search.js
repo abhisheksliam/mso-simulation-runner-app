@@ -51,7 +51,7 @@ $("#searchActions").keyup(function(){
 
 });
 
-actionList = properties.getActionList;
+actionList = SIM5ActionList.getActionList;
 
 
 var initactionList = function(){
@@ -160,7 +160,7 @@ updateDetailsForm();
 $(function() {
 
     var options = {
-        source: properties.getKeyboardActions,
+        source: SIM5ActionList.getKeyboardActions,
         minLength: 1
     };
     var selector = '#keyName';
