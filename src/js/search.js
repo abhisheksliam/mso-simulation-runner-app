@@ -36,7 +36,7 @@ $("#searchActions").keyup(function(){
     var filter = $(this).val(), count = 0;
 
     // Loop through the comment list
-    $("#layout-skins-list tbody tr").each(function(){
+    $(".action-details-section #layout-skins-list tbody tr").each(function(){
 
         // If the list item does not contain the text phrase fade it out
         if ($(this).text().search(new RegExp(filter, "i")) < 0) {
@@ -55,7 +55,7 @@ actionList = SIM5ActionList.getActionList;
 
 
 var initactionList = function(){
-    $("#layout-skins-list tbody").empty();
+    $(".action-details-section #layout-skins-list tbody").empty();
 
     var taskData =   JSON.parse(localStorage.getItem('taskData'));
 
@@ -79,7 +79,7 @@ var initactionList = function(){
 
         for(var i=0;i<filteredActionList.length;i++){
 
-            $("#layout-skins-list tbody").append('                <tr class="action-details-button">                  <td><code>'+filteredActionList[i]+'</code></td>                  <!--<td><a href="#" class="btn btn-primary btn-xs action-details-button"><i class="fa fa-eye"></i></a></td>-->                </tr>')
+            $(".action-details-section #layout-skins-list tbody").append('                <tr class="action-details-button">                  <td><code>'+filteredActionList[i]+'</code></td>                  <!--<td><a href="#" class="btn btn-primary btn-xs action-details-button"><i class="fa fa-eye"></i></a></td>-->                </tr>')
 
         }
 
@@ -91,7 +91,7 @@ initactionList();
 
 var updateDetailsForm = function(){
 
-    $('#layout-skins-list').on('click', '.action-details-button', function() {
+    $('.action-details-section #layout-skins-list').on('click', '.action-details-button', function() {
         $("#actionDetailsForm").empty();
         var el = $(this);
         var clickedNodeText = el.find('code').text();

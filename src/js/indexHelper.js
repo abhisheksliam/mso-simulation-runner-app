@@ -76,7 +76,7 @@ $('.sidebar-menu').on('click', '.add-method', function(e) {
 		methodTree.append('<li data-tree=\'{"item":"' + (parseInt(clickedAddMethodNodeDataTree.item)) + '","method":"' + (parseInt(clickedAddMethodNodeDataTree.method) + 1) + '","action":""}\' class="add-method"><a href="#"><i class="fa fa-plus-square-o text-aqua"></i> <span>Add New Method</span></a></li><li data-tree=\'{"item":"' + (parseInt(clickedAddMethodNodeDataTree.item)) + '","method":"' + (parseInt(clickedAddMethodNodeDataTree.method) + 1) + '","action":""}\' class="duplicate-method"><a href="#"><i class="fa fa-copy text-aqua"></i> <span>Duplicate Method</span></a></li>');
 
         $('.reorder-up, .reorder-down').hide();
-        renderCurrentActionList();
+        renderActionListForCurrentMethod();
     }
     else{
         console.log('112');
@@ -221,7 +221,7 @@ $('.sidebar-menu').on('click', '.delete-method-node', function(e) {
     methodTree.remove();
     
 	localStorage.setItem('taskData', JSON.stringify(taskData));
-    renderCurrentActionList();
+    renderActionListForCurrentMethod();
     refreshForm();
     e.stopPropagation();
 });
