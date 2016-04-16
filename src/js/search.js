@@ -96,6 +96,7 @@ var updateDetailsForm = function(){
         var el = $(this);
         var clickedNodeText = el.find('code').text();
         $(".functionDisplayName").text(clickedNodeText.trim());
+        $('#saveActionButton').show();
 
         var actionNodeFunction =  clickedNodeText.trim().replace(/ *\([^)]*\) */g, "");
         $(".functionDisplayName").attr('name', actionNodeFunction + '()');
@@ -109,8 +110,6 @@ var updateDetailsForm = function(){
         }
         try{
             if(actionNodeArray){
-
-                $('#saveActionButton').show();
 
                 if(actionNodeArray.length >0){
 
