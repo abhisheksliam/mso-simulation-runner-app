@@ -197,7 +197,7 @@ var renderActionListForCurrentMethod = function(){
 	var currentActionList = [];
 	var taskData =   JSON.parse(localStorage.getItem('taskData'));
     
-	$(".baloo-method-details").html("");
+	$(".baloo-method-details .step-description").html("");
 	$(".method-details-section #layout-skins-list1 tbody").empty();
 
     if(taskData.items[currentItemNumber - 1].init){
@@ -238,11 +238,11 @@ var renderActionListForCurrentMethod = function(){
 	
 				if (taskData.items[currentItemNumber - 1].methods[currentMethodNumber - 1].balooActions !== undefined) {
 					$.each(taskData.items[currentItemNumber - 1].methods[currentMethodNumber - 1].balooActions, function(index){
-						$(".baloo-method-details").append("<div><span class='badge badge-primary'>B" + (index + 1) + "</span>" + this.text + "</div>");
+						$(".baloo-method-details .step-description").append("<div><span class='badge badge-primary'>B" + (index + 1) + "</span>" + this.text + "</div>");
 					});
 				}
 	
-				$(".baloo-method-details").append("<div><span class='badge'>NA</span>No baloo action specified for this action</div>");
+				$(".baloo-method-details .step-description").append("<div><span class='badge'>NA</span>No baloo action specified for this action</div>");
 				$('.baloo-method-details').show();
 				
             }
