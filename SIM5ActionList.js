@@ -3,7 +3,7 @@
  */
 var SIM5ActionList = (function(){
 
-    var _keyboardActions = ["ALT","ARROW_DOWN","ARROW_LEFT","ARROW_RIGHT","ARROW_UP","BACK_SPACE","CONTROL","DECIMAL","DELETE","END","ENTER","ESCAPE","F1","F10","F11","F12","F2","F3","F4","F5","F6","F7","F8","F9","HOME","PAGE_DOWN","SHIFT","SPACEBAR","TAB","CTRL"];
+    var _keyboardActions = ["ALT","ARROW_DOWN","ARROW_LEFT","ARROW_RIGHT","ARROW_UP","BACK_SPACE","CONTROL","DECIMAL","DELETE","END","ENTER","ESCAPE","F1","F10","F11","F12","F2","F3","F4","F5","F6","F7","F8","F9","HOME","PAGE_DOWN","SHIFT","SPACEBAR","TAB","CTRL","ESC"];
 
     var _actionList = {
 
@@ -16,6 +16,7 @@ var SIM5ActionList = (function(){
             "rightClickOnCell(String cellName)",
             "doubleClick(String elementName)",
             "clickTwice(String elementName)",
+            "tripleClick(String elementName)",
             "rightClick(String elementName)",
             "enterText(String text)",
             "pressNreleaseKey(MyKeys keyName)",
@@ -75,6 +76,7 @@ var SIM5ActionList = (function(){
             "doubleClickAndWait()",
             "doubleClick(String elementName)",
             "clickTwice(String elementName)",
+            "tripleClick(String elementName)",
             "rightClickCurrentPos()",
             "rightClick(String elementName)",
             "dragAndDropBy(String source, String target)",
@@ -124,6 +126,7 @@ var SIM5ActionList = (function(){
             "doubleClick(String elementName)",
             "doubleClickAndWait()",
             "clickTwice(String elementName)",
+            "tripleClick(String elementName)",
             "rightClick(String elementName)",
             "rightClickCurrentPos()",
             "clickAndHoldCurrentPos()",
@@ -170,6 +173,7 @@ var SIM5ActionList = (function(){
             "doubleClickAndWait()",
             "doubleClick(String elementName)",
             "clickTwice(String elementName)",
+            "tripleClick(String elementName)",
             "rightClickCurrentPos()",
             "dragAndDropBy(String source, String target)",
             "dragAndDropByOffset(String elementName, int xOffset, int yOffset)",
