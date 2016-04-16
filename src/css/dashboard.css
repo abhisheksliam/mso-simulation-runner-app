@@ -24,11 +24,10 @@ body {
     font-weight: bold;
 }
 
-.baloo-method-details .btn-primary {
-	display: block;
-	margin-bottom: 10px;
+.badge {
+	margin-right: 10px;
 }
 
-.method-details-section .badge {
-	background-color: #3c8dbc;
+.badge.badge-primary {
+	background-color: #3c8dbc;	
 }
