@@ -166,7 +166,7 @@ var renderBalooAction = function(pageView){
 	if(pageView === undefined) {
 		$('.baloo-description').hide();
 		
-	} else if((taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].balooActions !== undefined) && (taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1].balooActionIndex !== undefined)) {
+	} else if((taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].balooActions !== undefined) && (taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1].balooActionIndex !== undefined) && (taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1].balooActionIndex !== '')) {
 
 		$(".baloo-description").html(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].balooActions[taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1].balooActionIndex].text);
 
@@ -218,7 +218,7 @@ var renderActionListForCurrentMethod = function(){
                             functionName = functionName.replace(/,([^,]*)$/, '' + '$1');
                             functionName = functionName + ')';
 												
-							if (taskData.items[currentItemNumber - 1].methods[currentMethodNumber - 1].actions[k].balooActionIndex !== undefined) {
+							if (taskData.items[currentItemNumber - 1].methods[currentMethodNumber - 1].actions[k].balooActionIndex !== undefined && taskData.items[currentItemNumber - 1].methods[currentMethodNumber - 1].actions[k].balooActionIndex !== '') {
 								balooActionBadge = '<span class="badge badge-primary">B' + (taskData.items[currentItemNumber - 1].methods[currentMethodNumber - 1].actions[k].balooActionIndex + 1) + '</span>';	
 							} else {
 								balooActionBadge = '<span class="badge">NA</span>';
@@ -231,22 +231,23 @@ var renderActionListForCurrentMethod = function(){
                         }
                     }
                 }
+				
+				for(var i=0;i<currentActionList.length;i++){
+					$(".method-details-section #layout-skins-list1 tbody").append('<tr class="action-details-button"><td>' + currentActionList[i].balooActionBadge + '<code>'+(i+1)+'. ' + currentActionList[i].functionName+'</code></td></tr>')
+        		}
+	
+				if (taskData.items[currentItemNumber - 1].methods[currentMethodNumber - 1].balooActions !== undefined) {
+					$.each(taskData.items[currentItemNumber - 1].methods[currentMethodNumber - 1].balooActions, function(index){
+						$(".baloo-method-details").append("<div><span class='badge badge-primary'>B" + (index + 1) + "</span>" + this.text + "</div>");
+					});
+				}
+	
+				$(".baloo-method-details").append("<div><span class='badge'>NA</span>No baloo action specified for this action</div>");
+				$('.baloo-method-details').show();
+				
             }
         }
     }
-
-        for(var i=0;i<currentActionList.length;i++){
-            $(".method-details-section #layout-skins-list1 tbody").append('<tr class="action-details-button"><td>' + currentActionList[i].balooActionBadge + '<code>'+(i+1)+'. ' + currentActionList[i].functionName+'</code></td></tr>')
-        }
-	
-		if (taskData.items[currentItemNumber - 1].methods[currentMethodNumber - 1].balooActions !== undefined) {
-			$.each(taskData.items[currentItemNumber - 1].methods[currentMethodNumber - 1].balooActions, function(index){
-				$(".baloo-method-details").append("<div><span class='badge badge-primary'>B" + (index + 1) + "</span>" + this.text + "</div>");
-			});
-		}
-	
-		$(".baloo-method-details").append("<div><span class='badge'>NA</span>No baloo action specified for this action</div>");
-		$('.baloo-method-details').show();
 };
 
 
