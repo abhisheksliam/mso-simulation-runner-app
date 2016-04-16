@@ -253,18 +253,17 @@ $('.sidebar-menu').on('click', '.copy-action', function(e) {
     if(taskData.items[parseInt(clickedAddActionNodeDataTree.item)-1].methods[parseInt(clickedAddActionNodeDataTree.method)-1].actions.length !== 0){
         console.log('111');
 
-
+    var actionLength = $('.item-node').eq(currentItemNumber-1).find('.method-node').eq(currentMethodNumber -1).find('.action-node').length;
 
     var elSelectedActionNode = $('.action-node').filter('.active').index();
 
     if(elSelectedActionNode == -1){
 
-        var actionLength = $('.item-node').eq(currentItemNumber-1).find('.method-node').eq(currentMethodNumber -1).find('.action-node').length;
         //elSelectedActionNode =  $('.item-node').eq(currentItemNumber-1).find('.method-node').eq(currentMethodNumber -1).find('.action-node').eq(actionLength -1);
         elSelectedActionNode = actionLength -1;
     }
 
-    addValue(taskData.items[parseInt(clickedAddActionNodeDataTree.item)-1].methods[parseInt(clickedAddActionNodeDataTree.method)-1],'actions', (parseInt(clickedAddActionNodeDataTree.action)) ,taskData.items[parseInt(clickedAddActionNodeDataTree.item)-1].methods[parseInt(clickedAddActionNodeDataTree.method)-1].actions[parseInt(elSelectedActionNode)]);
+    addValue(taskData.items[parseInt(clickedAddActionNodeDataTree.item)-1].methods[parseInt(clickedAddActionNodeDataTree.method)-1],'actions', (parseInt(actionLength)) ,taskData.items[parseInt(clickedAddActionNodeDataTree.item)-1].methods[parseInt(clickedAddActionNodeDataTree.method)-1].actions[parseInt(elSelectedActionNode)]);
     localStorage.setItem('taskData', JSON.stringify(taskData));
 
         $('.action-node').removeClass('active');
