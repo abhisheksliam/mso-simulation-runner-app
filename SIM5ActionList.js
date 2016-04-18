@@ -54,7 +54,7 @@ var SIM5ActionList = (function(){
             "waitForSec(int time)",
             "clearText(String elementName)",
             "scroll(String elementName)",
-            "selectFromDropdown(String elementName, String option)",
+            "selectFromDropdown(String elementName, String dropdownOption)",
             "selectInputText(String elementName)",
             "skipToNextItem()"
         ]
@@ -101,7 +101,7 @@ var SIM5ActionList = (function(){
             "waitForSec(int time)",
             "clearText(String elementName)",
             "scroll(String elementName)",
-            "selectFromDropdown(String elementName, String parameter)",
+            "selectFromDropdown(String elementName, String dropdownOption)",
             "selectInputText(String elementName)",
             "skipToNextItem()"
         ],
@@ -119,7 +119,7 @@ var SIM5ActionList = (function(){
             "clickAt(String elementName, int pos)",
             "clickAtCurrentPos()",
             "clickAtPercent(String elementName, int xposPercent, int yposPercent)",
-            "selectFromDropdown(String elementName, String parameter)",
+            "selectFromDropdown(String elementName, String dropdownOption)",
             "selectInputText(String elementName)",
             "selectText(String elementName, int start, int end, Method methodType)",
             "selectMultiParaText(String elementNameStart, String elementNameEnd, int Start, int End, Method methodType)",
@@ -191,7 +191,7 @@ var SIM5ActionList = (function(){
             "waitForSec(int time)",
             "clearText(String elementName)",
             "scroll(String elementName)",
-            "selectFromDropdown(String elementName, String option)",
+            "selectFromDropdown(String elementName, String dropdownOption)",
             "skipToNextItem()",
             "selectCell(String cellName)",
             "selectCellRange(String cellRange, Method methodType)",
