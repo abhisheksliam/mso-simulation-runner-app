@@ -93,6 +93,22 @@ var updateSkipItem = function(){
     console.log('***************** taskData '+ JSON.stringify(taskData));
 };
 
+var getNumberOfItemsToSkip = function(current){
+var skipCount = 0;
+
+    taskData =   JSON.parse(localStorage.getItem('taskData'));
+
+    for(var i=0;i<current;i++){
+        if(taskData.items[i].init){
+            if(taskData.items[i].skip == true){
+                skipCount++;
+            }
+        }
+    }
+
+return skipCount;
+}
+
 var taskRunDataToXMl = function(){
     updateSkipItem();
 
@@ -120,11 +136,13 @@ var taskRunDataToXMl = function(){
 
         if(taskData.items[i].init){
 
-            var jin=0;
+
 
             taskDataPre = taskDataPre + '<Item sno="'+(i+1)+'">';
 
             for(var j=0;j<taskData.items[i].methods.length;j++){
+
+                var jin=0;
 
                 if(taskData.items[i].methods[j].init){
                     taskDataPre = taskDataPre + '<Method group="'+taskData.items[i].methods[j].group+'" name="'+taskData.items[i].methods[j].type+'" sno="'+(j+1)+'"><Actions>';
@@ -137,8 +155,10 @@ var taskRunDataToXMl = function(){
                             if(i>0 && jin==0){
                                 if(taskData.items[i-1].skip == true){
                                     if(methodChecked == (j+1)){
-                                        jin=1;
-                                        taskDataPre = taskDataPre + '<Action sno="'+(k+1)+'"><actionType name="skiptonextitem"></actionType></Action>';
+                                        jin = getNumberOfItemsToSkip(i);
+                                            for(var _jin=0; _jin < jin;_jin++){
+                                                taskDataPre = taskDataPre + '<Action sno="'+(_jin+1)+'"><actionType name="skiptonextitem"></actionType></Action>';
+                                            }
                                     }
                                 };
                             }
