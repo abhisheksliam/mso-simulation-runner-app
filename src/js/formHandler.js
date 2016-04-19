@@ -121,7 +121,7 @@ var updateDetailsForm = function(functionSyntax, userInputArray){
                     console.log('field for: '+actionNodeArray[i].trim());
                     console.log('field for: '+actionNodeArray[i].trim().split(' ')[0]);
 
-                    $("#actionDetailsForm").append('<div class="col-sm-12" style="margin: 5px 0px 5px 0px">        <input id="'+actionNodeArray[i].trim().split(' ')[1]+'" type="text" class="form-control" id="" placeholder="'+actionNodeArray[i].trim().split(' ')[1]+'">        </div>');
+                    $("#actionDetailsForm").append('<input id="'+actionNodeArray[i].trim().split(' ')[1]+'" type="text" class="form-control" id="" placeholder="'+actionNodeArray[i].trim().split(' ')[1]+'">');
                     $('#'+actionNodeArray[i].trim().split(' ')[1]).val(userInputArray[i].actVal);
                 }
             }
