@@ -262,7 +262,8 @@ var initCurrentActionData = function(callback){
     currentActionDetails = {
         init: 'false',
         name: '',
-        values: []
+        values: [],
+		balooActionIndex: ''
     };
 
     if((taskData.items[parseInt(currentItemNumber)-1].methods[parseInt(currentMethodNumber)-1]) && (taskData.items[parseInt(currentItemNumber)-1].methods[parseInt(currentMethodNumber)-1].init)) {
@@ -273,6 +274,10 @@ var initCurrentActionData = function(callback){
 
             // update tree view
 	        $('.item-node').eq(currentItemNumber-1).find('.method-node').eq(currentMethodNumber -1).find('.action-node').eq(currentActionNumber -1).find('.action-name').html(currentActionDetails.name);
+		
+		if((taskData.items[currentItemNumber - 1].methods[currentMethodNumber - 1].actions[currentActionNumber -1]) && (taskData.items[currentItemNumber - 1].methods[currentMethodNumber - 1].actions[currentActionNumber -1].balooActionIndex !== undefined)) {
+			currentActionDetails.balooActionIndex = taskData.items[currentItemNumber - 1].methods[currentMethodNumber - 1].actions[currentActionNumber -1].balooActionIndex
+		}
 
             if($( "#actionDetailsForm input").length){
 
