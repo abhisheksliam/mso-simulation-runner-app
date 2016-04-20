@@ -168,7 +168,7 @@ var renderBalooAction = function(pageView){
 		
 	} else if((taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].balooActions !== undefined) && (taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1].balooActionIndex !== undefined)) {
 
-		$(".baloo-description").html(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].balooActions[taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1].balooActionIndex].text);
+		$(".baloo-description span").html(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].balooActions[taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1].balooActionIndex].text);
 
 		$('.baloo-description').show();
 	}
