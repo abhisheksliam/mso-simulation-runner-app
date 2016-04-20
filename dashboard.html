@@ -111,7 +111,7 @@
           </li>-->
           <!-- Control Sidebar Toggle Button -->
           <li>
-            <a id="run-conf-sidebar" href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+            <a id="run-conf-sidebar" href="#" data-toggle="control-sidebar" title="Task Runner"><i class="fa fa-gears"></i></a>
           </li>
         </ul>
       </div>
@@ -418,8 +418,9 @@
 		  
 		<section class="content-description">
 			<div class="col-md-12">
-				<div class="box box-primary baloo-description">
-					
+				<div class="box baloo-description">
+					<label>Baloo Action: &nbsp;&nbsp;</label>
+					<span></span>		
 				</div>
 			</div>
 		</section>
@@ -471,7 +472,7 @@
           <div class="box-body col-md-6" style="margin-top: 15px">
           <div class="box box-success">
             <div class="box-header with-border">
-              <h3 class="box-title">Current Method Actions List</h3>
+              <h3 class="box-title">Actions List for Selected Method</h3>
               <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                 <!--<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>-->
@@ -511,16 +512,18 @@
           <!-- Horizontal Form -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Action Details Form &nbsp;&nbsp;</h3>
-              <span class="functionDisplayName"></span>
-            </div><!-- /.box-header -->
+              <h3 class="box-title">Action Details Form</h3>
+		    </div><!-- /.box-header -->
             <!-- form start -->
             <form class="form-horizontal">
               <div class="box-body">
-                <div class="form-group" id="actionDetailsForm">
-                  <!--                  <div class="col-sm-12">
-                                      <input type="text" class="form-control" id="" placeholder="elementName">
-                                    </div>-->
+                <div class="form-group">
+					<div class="col-md-12">
+						<label><span class="functionDisplayName"></span></label>
+						<div id="actionDetailsForm">
+						
+						</div>
+					</div>
                 </div>
               </div><!-- /.box-body -->
               <div id="saveActionButton" class="box-footer" style="margin-top: -30px;">
@@ -530,6 +533,10 @@
           </div><!-- /.box -->
 
           <div class="box box-primary" style="margin-bottom:0px">
+		  	<div class="box-header with-border">
+              <h3 class="box-title">Action List</h3>
+		    </div><!-- /.box-header -->
+			  
             <div class="box-body" style="padding:0px 10px">
               <div class="row">
                 <form action="#" method="get" class="sidebar-form">
@@ -569,7 +576,7 @@
 
           <div class="box box-success">
             <div class="box-header with-border">
-              <h3 class="box-title">Current Method Actions List</h3>
+              <h3 class="box-title">Actions List for Selected Method</h3>
               <div class="box-tools pull-right">
                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                 <!--<button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>-->

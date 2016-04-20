@@ -1,3 +1,8 @@
+/* DOCUMENT INFORMATION
+	- Document: SIM5 Runner Dashboard Styles
+	- Author:   Shipra  
+*/
+
 body {
     height: 100%;
 }
@@ -6,9 +11,35 @@ body {
     min-height: 3em;
     display: none;
     padding-left: 5px;
-    font-size: 16px;
+    background: none;
+	box-shadow: none;
+	border: 1px solid lightblue;	
+	font-size: 15px;
+}
 
-    color: #3c8dbc;
-    display: block;
-    font-weight: bold;
+.baloo-description label {
+	margin-bottom: auto;
+}
+
+.baloo-description span {
+	color: #0000ff;
+}
+
+code {
+	color: #0000FF;
+	background: none;
+}
+
+#layout-skins-list code {
+	color: #c7254e;
+}
+
+#actionDetailsForm input {
+	margin: 5px 0px 5px 0px;
+}
+
+.action-details-section label .functionDisplayName {
+	color: #0000ff;
+    font-size: 15px;
+    font-weight: normal;
 }

@@ -121,7 +121,7 @@ var updateDetailsForm = function(functionSyntax, userInputArray){
                     console.log('field for: '+actionNodeArray[i].trim());
                     console.log('field for: '+actionNodeArray[i].trim().split(' ')[0]);
 
-                    $("#actionDetailsForm").append('<div class="col-sm-12" style="margin: 5px 0px 5px 0px">        <input id="'+actionNodeArray[i].trim().split(' ')[1]+'" type="text" class="form-control" id="" placeholder="'+actionNodeArray[i].trim().split(' ')[1]+'">        </div>');
+                    $("#actionDetailsForm").append('<input id="'+actionNodeArray[i].trim().split(' ')[1]+'" type="text" class="form-control" id="" placeholder="'+actionNodeArray[i].trim().split(' ')[1]+'">');
                     $('#'+actionNodeArray[i].trim().split(' ')[1]).val(userInputArray[i].actVal);
                 }
             }
@@ -168,7 +168,7 @@ var renderBalooAction = function(pageView){
 		
 	} else if((taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].balooActions !== undefined) && (taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1].balooActionIndex !== undefined)) {
 
-		$(".baloo-description").html(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].balooActions[taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1].balooActionIndex].text);
+		$(".baloo-description span").html(taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].balooActions[taskDataFilled.items[currentItemNumber-1].methods[currentMethodNumber-1].actions[currentActionNumber-1].balooActionIndex].text);
 
 		$('.baloo-description').show();
 	}
