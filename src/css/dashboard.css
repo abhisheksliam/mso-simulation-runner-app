@@ -1,3 +1,8 @@
+/* DOCUMENT INFORMATION
+	- Document: SIM5 Runner Dashboard Styles
+	- Author:   Shipra  
+*/
+
 body {
     height: 100%;
 }
@@ -9,17 +14,16 @@ body {
     background: none;
 	box-shadow: none;
 	border: 1px solid lightblue;	
+	font-size: 15px;
 }
 
-.baloo-description h4 {
-	display: inline-block;
+.baloo-description label {
+	margin-bottom: auto;
 }
 
 .baloo-description span {
 	color: #0000ff;
-	font-size: 15px;
 }
-
 
 code {
 	color: #0000FF;
