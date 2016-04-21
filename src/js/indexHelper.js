@@ -328,7 +328,7 @@ var copyMethod = function(selectedItem, selectedMethod, newMethodIndex){
 
     var i = selectedItem-1,j=newMethodIndex;
 
-    if (taskData.items[i].methods[j].init) {
+    if (taskData.items[i].methods[j] && taskData.items[i].methods[j].init) {
 
         $('.item-node').eq((parseInt(i))).find('.add-method').click();
 
@@ -337,5 +337,8 @@ var copyMethod = function(selectedItem, selectedMethod, newMethodIndex){
 				_addAction1(i+1,j+1,k+1,taskData.items[i].methods[j].actions[k].name);
             }
         }
-    }
+    } else {
+		alert('Please save previous method data');
+		e.stopPropagation();
+	}
 };
