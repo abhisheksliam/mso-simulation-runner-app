@@ -239,8 +239,13 @@ $('.sidebar-menu').on('click', '.duplicate-method', function(e) {
 		elSelectedMethodNode = currentMethodNumber - 1;
     }
 	
-	copyMethod(currentItemNumber, elSelectedMethodNode, parseInt(clickedMethodDataTree.method));
-	el.remove();
+	var retStatus = false;
+	
+	retStatus =	copyMethod(currentItemNumber, elSelectedMethodNode, parseInt(clickedMethodDataTree.method));
+	
+	if(retStatus) {
+		el.remove();
+	}
   
 });
 
@@ -337,8 +342,10 @@ var copyMethod = function(selectedItem, selectedMethod, newMethodIndex){
 				_addAction1(i+1,j+1,k+1,taskData.items[i].methods[j].actions[k].name);
             }
         }
+	
+		return true;
     } else {
 		alert('Please save previous method data');
-		e.stopPropagation();
+		return false;
 	}
 };
