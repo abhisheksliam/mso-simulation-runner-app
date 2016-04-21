@@ -278,6 +278,13 @@ $('.sidebar-menu').on('click', '.copy-action', function(e) {
         $('.item-node').eq(parseInt(clickedAddActionNodeDataTree.item)-1).find('.method-node').eq(parseInt(clickedAddActionNodeDataTree.method)-1).find('.action-node').eq(parseInt(clickedAddActionNodeDataTree.action)).html('<a href="#"><i class="fa fa-circle-o"></i><span class="action-name">'+currentAction.name+'</span><span class="label pull-right bg-red delete-action-node"><i class="fa fa-times"></i></span></a>');
 
         $('.item-node').eq(parseInt(clickedAddActionNodeDataTree.item)-1).find('.method-node').eq(parseInt(clickedAddActionNodeDataTree.method)-1).find('.action-node').eq(parseInt(clickedAddActionNodeDataTree.action)).addClass('active');
+		
+	var newTaskData =   JSON.parse(localStorage.getItem('taskData'));
+		
+		newTaskData.items[parseInt(clickedAddActionNodeDataTree.item)-1].methods[parseInt(clickedAddActionNodeDataTree.method)-1].actions[parseInt(clickedAddActionNodeDataTree.action)].balooActionIndex = '';
+		
+    localStorage.setItem('taskData', JSON.stringify(newTaskData));
+		
         refreshForm();
     }
     else{
