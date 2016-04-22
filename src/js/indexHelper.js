@@ -59,7 +59,7 @@ function addNewAction(el,clickedAddActionNodeDataTree){
 
 $('.sidebar-menu').on('click', '.add-method', function(e) {
     var el = $(this);
-    var clickedAddMethodNodeDataTree = el.data('tree');
+    var clickedAddMethodNodeDataTree = JSON.parse(el.attr('data-tree'));
 
     var taskData =   JSON.parse(localStorage.getItem('taskData'));
 
@@ -231,7 +231,7 @@ $('.sidebar-menu').on('click', '.duplicate-method', function(e) {
 	
 	var el = $(this);
 	
-	var clickedMethodDataTree = el.data('tree');
+	var clickedMethodDataTree = JSON.parse(el.attr('data-tree'));
 		
 	var elSelectedMethodNode = $('.method-node').filter('.active').index();
 
@@ -239,8 +239,14 @@ $('.sidebar-menu').on('click', '.duplicate-method', function(e) {
 		elSelectedMethodNode = currentMethodNumber - 1;
     }
 	
-	copyMethod(currentItemNumber, elSelectedMethodNode, parseInt(clickedMethodDataTree.method));
-	el.remove();
+	var taskData =   JSON.parse(localStorage.getItem('taskData'));
+
+    if(taskData.items[parseInt(clickedMethodDataTree.item)-1].methods.length >= parseInt(clickedMethodDataTree.method)){
+		copyMethod(currentItemNumber, elSelectedMethodNode, parseInt(clickedMethodDataTree.method));
+    	el.remove();
+	} else {
+		alert('Please save previous method data');
+	}
   
 });
 
@@ -328,7 +334,7 @@ var copyMethod = function(selectedItem, selectedMethod, newMethodIndex){
 
     var i = selectedItem-1,j=newMethodIndex;
 
-    if (taskData.items[i].methods[j].init) {
+    if (taskData.items[i].methods[j] && taskData.items[i].methods[j].init) {
 
         $('.item-node').eq((parseInt(i))).find('.add-method').click();
 
@@ -337,5 +343,5 @@ var copyMethod = function(selectedItem, selectedMethod, newMethodIndex){
 				_addAction1(i+1,j+1,k+1,taskData.items[i].methods[j].actions[k].name);
             }
         }
-    }
+	}
 };
