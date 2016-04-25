@@ -2,13 +2,6 @@
  * Created by AbhishekK on 2/2/2016.
  */
 
-// LSM object:
-
-var currentScenario = 'T1';
-var currentItemNumber = 1;
-var currentMethodNumber = 1;
-var currentActionNumber = 1;
-
 updateCurrentTreeNode = function(){
     // get and update from breadcrum
     var currentScenarioLSM =   localStorage.getItem('currentScenario');
