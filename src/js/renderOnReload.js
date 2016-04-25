@@ -46,6 +46,28 @@ for(var i=0;i<taskData.items.length;i++){
 
     }
 }
+
+    $('.method-details-section').hide();
+    $('.action-details-section').hide();
+    $('.item-node').removeClass('active');
+    updateBreadcrum({"item":"","method":"","action":""});
+    $('#b_action').hide();
+    $('#b_method').hide();
+    $('#b_item').hide();
+    $('#T1').removeClass('active');
+    $('#A1').removeClass('active');
+
+    var currentScenarioLSM =   localStorage.getItem('currentScenario');
+    if(currentScenarioLSM)
+    {   currentScenario = currentScenarioLSM
+    }else{
+        currentScenario = 'T1';
+    }
+
+    $('#b_scenario').html('<i class="fa fa-cubes"> Scenario ' + currentScenario);
+    $('#b_scenario').attr('data-scenario', currentScenario);
+    $('#'+currentScenario).addClass('active');
+
 };
 
 renderTreeFromLsm();

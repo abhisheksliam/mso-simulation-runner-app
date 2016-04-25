@@ -292,11 +292,3 @@ $('.item-node a').click(function(e) {
 $('#saveActionButton').click(function(e){
     renderCurrentActionList();
 });
-
-
-/*
-$('.reorder-up, .reorder-down').click(function(e){
-    updateDetailsForm();
-    renderCurrentActionList();
-});
-*/

@@ -3,32 +3,38 @@
  */
 
 function updateBreadcrum(data, pageView){
-
-    console.log('update br called ');
-    console.log(data);
-
-    if(data != undefined){
+    if(data !== undefined && data !== null){
 
         console.log('updating breadcrum for .. ' + data.item + data.method + data.action );
+        $('#b_item').show();
         $('#b_item').html('Item ' + data.item);
-        $('#b_method').html('Method ' + data.method);
-        $('#b_action').html('Action ' + data.action);
-
-
         $('#b_item').attr('data-item', data.item);
-        $('#b_method').attr('data-method', data.method);
-        $('#b_action').attr('data-action', data.action);
+
+        if(data.method !== "" && data.method !== null) {
+            $('#b_method').html('Method ' + data.method);
+            $('#b_method').attr('data-method', data.method);
+            $('#b_method').show();
+
+            if(data.action !== "" && data.action !== null) {
+                $('#b_action').html('Action ' + data.action);
+                $('#b_action').attr('data-action', data.action);
+                $('#b_action').show();
+
+                $('.item-node').eq(parseInt(data.item)-1).find('.method-node').eq(parseInt(data.method)-1).find('.action-node').eq(parseInt(data.action)-1).addClass('active');
+            }else{
+                $('#b_action').hide();
+            }
+        }else{
+            $('#b_action').hide();
+            $('#b_method').hide();
+        }
 
         localStorage.setItem('currentItemNumber', JSON.stringify(data.item));
         localStorage.setItem('currentMethodNumber', JSON.stringify(data.method));
         localStorage.setItem('currentActionNumber', JSON.stringify(data.action));
 
-        // todo: set currentTreeNode here
-
     }
-	
     refreshForm(pageView);
-    //setTimeout(function(){ refreshForm(); }, 500);
 }
 
 function addNewMethod(el,clickedAddMethodNodeDataTree){
@@ -37,7 +43,7 @@ console.log('***** ' + clickedAddMethodNodeDataTree.item);
     var a = $.extend(true, {}, clickedAddMethodNodeDataTree);
     a.item = parseInt(a.item);
     a.method = parseInt(a.method) + 1;
-    a.action = 1;
+    a.action = "";
     updateBreadcrum(a);
 
     el.append('<li data-tree=\'{"item":"'+parseInt(a.item)+'","method":"'+(parseInt(clickedAddMethodNodeDataTree.method) + 1)+'","action":""}\' class="active treeview method-node">    <a href="#"><i class="fa fa-circle-o"></i> Method <span class="method-name">'+(parseInt(clickedAddMethodNodeDataTree.method) + 1)+'</span> <span href="#" class="reorder-up pull-right" style="padding-right:70px"><i class="fa fa-fw fa-arrow-up"></i></span><span href="#" class="reorder-down pull-right" style="padding-right:40px"><i class="fa fa-fw fa-arrow-down"></i></span> <i class="fa fa-angle-left pull-right"></i>    <span class="label pull-right bg-orange delete-method-node"><i class="fa fa-times"></i></span>    </a>    <ul class="treeview-menu action-tree" style="display: none;">    <li data-tree=\'{"item":"' + parseInt(clickedAddMethodNodeDataTree.item) + '","method":"'+(parseInt(clickedAddMethodNodeDataTree.method) + 1)+'","action":"1"}\' class="action-node active">    <a href="#"><i class="fa fa-circle-o"></i> <span class="action-name"> Action 1 </span></a>    </li>    <li data-tree=\'{"item":"'+parseInt(a.item)+'","method":"'+(parseInt(clickedAddMethodNodeDataTree.method) + 1)+'","action":"1"}\' class="add-action"><a href="#" class="copy-action"><i class="fa fa-copy text-lime"></i> <span>Duplicate</span></a></li>    </ul>    </li>');
@@ -64,8 +70,6 @@ $('.sidebar-menu').on('click', '.add-method', function(e) {
     var taskData =   JSON.parse(localStorage.getItem('taskData'));
 
     if(taskData.items[parseInt(clickedAddMethodNodeDataTree.item)-1].methods.length >= parseInt(clickedAddMethodNodeDataTree.method)){
-        console.log('111');
-
         $('.method-node').removeClass('active');
 
         var methodTree = el.parent('.method-tree');
@@ -79,11 +83,8 @@ $('.sidebar-menu').on('click', '.add-method', function(e) {
         renderCurrentActionList();
     }
     else{
-        console.log('112');
         alert('Please save previous method data');
-        //e.stopPropagation();
     };
-
 });
 
 $('.sidebar-menu').on('click', '.add-action', function(e) {
@@ -114,38 +115,26 @@ $('.sidebar-menu').on('click', '.add-action', function(e) {
 
 
 $('.sidebar-menu').on('click', '.item-node', function(event) {
-    //console.log($(event.target).parent().attr('class'));
     var targetNode = $(event.target).parent();
 
     var el = $(this);
     var clickedItemNodeDataTree = targetNode.data('tree');
     updateBreadcrum(clickedItemNodeDataTree);
-    //event.stopPropagation();
 });
 
 
 $('.sidebar-menu').on('click', '.method-node', function(e) {
-    //console.log($(event.target).parent().attr('class'));
     var targetNode = $(e.target).parent();
 
     var el = $(this);
     var clickedAddActionNodeDataTree = targetNode.data('tree');
+    clickedAddActionNodeDataTree.action = "";
     updateBreadcrum(clickedAddActionNodeDataTree);
 
-    //$('.method-node').removeClass('active');
     el.addClass( 'active' );
-    //e.stopPropagation();
 });
 
 $('.sidebar-menu').on('click', '.action-node', function(e) {
-	
-    //console.log($(event.target).parent().attr('class'));
-    var targetNode = $(e.target).parent();
-
-/*    console.log($(this).index());
-    console.log(targetNode.parent().find('li').size());
-
-    console.log($(this).parent().parent().data('tree'));*/
 
     var el = $(this);
 
@@ -153,7 +142,6 @@ $('.sidebar-menu').on('click', '.action-node', function(e) {
 
     clickedAddActionNodeDataTree.action = ($(this).index() + 1);
 
-    console.log(clickedAddActionNodeDataTree);
     updateBreadcrum(clickedAddActionNodeDataTree, 'action');
     $('.action-node').removeClass('active');
     el.addClass( 'active' );
@@ -163,9 +151,6 @@ $('.sidebar-menu').on('click', '.action-node', function(e) {
 $('.sidebar-menu').on('click', '.delete-action-node', function(e) {
     var taskData =   JSON.parse(localStorage.getItem('taskData'));
 
-    console.log($(this).parent().parent().index());
-    console.log($(this).parent().parent().parent().parent().data('tree'));
-
     $('.action-node').removeClass('active');
 
     var el = $(this);
@@ -173,14 +158,10 @@ $('.sidebar-menu').on('click', '.delete-action-node', function(e) {
     var currentAddActionData = $(this).parent().parent().parent().parent().data('tree');
     currentAddActionData.action = ($(this).parent().parent().index() + 1);
 
-    console.log(currentAddActionData);
-
     var updatedAddActionData = {"item":currentAddActionData.item,"method":currentAddActionData.method,"action":(parseInt(currentAddActionData.action) - 1)};
 
     actionTree.next().data('tree', updatedAddActionData);
 
-    updateBreadcrum({"item":currentAddActionData.item,"method":currentAddActionData.method,"action":(parseInt(currentAddActionData.action) - 1)});
-    
     taskData.items[parseInt(currentAddActionData.item)-1].methods[parseInt(currentAddActionData.method)-1].actions.splice(parseInt(currentAddActionData.action)-1, 1);
 	
 	localStorage.setItem('taskData', JSON.stringify(taskData));
@@ -189,6 +170,14 @@ $('.sidebar-menu').on('click', '.delete-action-node', function(e) {
 		actionTree.siblings().find('.delete-action-node').remove();
 	}
 	actionTree.remove();
+
+    currentActionNumber = parseInt(currentAddActionData.action);
+    if(currentActionNumber ===1){
+        updateBreadcrum({"item":currentAddActionData.item,"method":currentAddActionData.method,"action":(parseInt(currentAddActionData.action))});
+    }else{
+        updateBreadcrum({"item":currentAddActionData.item,"method":currentAddActionData.method,"action":(parseInt(currentAddActionData.action) - 1)});
+    }
+
     renderCurrentActionList();
     e.stopPropagation();
 });
@@ -201,6 +190,7 @@ $('.sidebar-menu').on('click', '.delete-method-node', function(e) {
     var methodTree = $(this).parent().parent('.method-node');
     
 	var currentAddMethodData = JSON.parse(methodTree.attr('data-tree'));
+    var _currentAddMethodData = currentAddMethodData;
 	var updatedAddMethodData;
 	var methodNumber;
 	
@@ -216,12 +206,14 @@ $('.sidebar-menu').on('click', '.delete-method-node', function(e) {
 		
     	$(this).attr('data-tree', updatedAddMethodData); 
     });
-	
-	updateBreadcrum({"item":"","method":"","action":""});
+
+    currentMethodNumber = parseInt(_currentAddMethodData.method);
+    updateBreadcrum({"item":_currentAddMethodData.item,"method":"","action":""});
     methodTree.remove();
     
 	localStorage.setItem('taskData', JSON.stringify(taskData));
-    renderCurrentActionList();
+    $('.method-details-section').hide();
+    $('.action-details-section').hide();
     refreshForm();
     e.stopPropagation();
 });
@@ -243,6 +235,8 @@ $('.sidebar-menu').on('click', '.duplicate-method', function(e) {
 
     if(taskData.items[parseInt(clickedMethodDataTree.item)-1].methods.length >= parseInt(clickedMethodDataTree.method)){
 		copyMethod(currentItemNumber, elSelectedMethodNode, parseInt(clickedMethodDataTree.method));
+    $('.action-details-section').hide();
+    $('.method-details-section').show();
     	el.remove();
 	} else {
 		alert('Please save previous method data');
@@ -257,15 +251,11 @@ $('.sidebar-menu').on('click', '.copy-action', function(e) {
     var taskData =   JSON.parse(localStorage.getItem('taskData'));
 
     if(taskData.items[parseInt(clickedAddActionNodeDataTree.item)-1].methods[parseInt(clickedAddActionNodeDataTree.method)-1].actions.length !== 0){
-        console.log('111');
-
     var actionLength = $('.item-node').eq(currentItemNumber-1).find('.method-node').eq(currentMethodNumber -1).find('.action-node').length;
 
     var elSelectedActionNode = $('.action-node').filter('.active').index();
 
     if(elSelectedActionNode == -1){
-
-        //elSelectedActionNode =  $('.item-node').eq(currentItemNumber-1).find('.method-node').eq(currentMethodNumber -1).find('.action-node').eq(actionLength -1);
         elSelectedActionNode = actionLength -1;
     }
 
@@ -291,10 +281,13 @@ $('.sidebar-menu').on('click', '.copy-action', function(e) {
 		
     localStorage.setItem('taskData', JSON.stringify(newTaskData));
 		
-        refreshForm();
+currentActionNumber = clickedAddActionNodeDataTree.action + 1 ;
+        clickedAddActionNodeDataTree.action = clickedAddActionNodeDataTree.action +1;
+        updateBreadcrum(clickedAddActionNodeDataTree, 'action');
+        fillActionDetails('action');
+        e.stopPropagation();
     }
     else{
-        console.log('112');
         alert('Please save first action data');
         e.stopPropagation();
     }
@@ -343,5 +336,8 @@ var copyMethod = function(selectedItem, selectedMethod, newMethodIndex){
 				_addAction1(i+1,j+1,k+1,taskData.items[i].methods[j].actions[k].name);
             }
         }
-	}
+    }
+
+    var _br = {"item":selectedItem,"method":newMethodIndex +1,"action":""};
+    updateBreadcrum(_br, 'action');
 };
