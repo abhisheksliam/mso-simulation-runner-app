@@ -58,6 +58,7 @@ var SIM5ActionList = (function(){
             "selectFromDropdown(String elementName, String option)",
             "selectInputText(String elementName)",
             "pressKeyFromVirtualKeyboard(String keyName)",
+            "clickTwiceAtCurrentPos",
             "skipToNextItem()"
         ]
         ,
@@ -106,6 +107,7 @@ var SIM5ActionList = (function(){
             "selectFromDropdown(String elementName, String option)",
             "selectInputText(String elementName)",
             "pressKeyFromVirtualKeyboard(String keyName)",
+            "clickTwiceAtCurrentPos",
             "skipToNextItem()"
         ],
         ppt: [
@@ -153,6 +155,7 @@ var SIM5ActionList = (function(){
             "clearText(String elementName)",
             "scroll(String elementName)",
             "pressKeyFromVirtualKeyboard(String keyName)",
+            "clickTwiceAtCurrentPos",
             "skipToNextItem()"
         ],
         access  :   [
@@ -200,6 +203,7 @@ var SIM5ActionList = (function(){
             "selectCell(String cellName)",
             "selectCellRange(String cellRange, Method methodType)",
             "pressKeyFromVirtualKeyboard(String keyName)",
+            "clickTwiceAtCurrentPos",
             "rightClickOnCell(String cellName)"
         ]
     };
