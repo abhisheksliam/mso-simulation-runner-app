@@ -7,7 +7,7 @@ $('#scenario').on('click','li' , function() {
     $(this).attr('class', 'active');
     var currentScenario = $(this).attr('id');
 
-    $('#b_scenario').html('<i class="fa fa-dashboard"> Scenario ' + $(this).attr('id'));
+    $('#b_scenario').html('<i class="fa fa-cubes"> Scenario ' + $(this).attr('id'));
 
     localStorage.setItem('currentScenario', currentScenario);
 
