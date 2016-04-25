@@ -415,6 +415,17 @@ if(pathwayListData !== undefined){
     return js_beautify(runJFinal);
 };
 
+$("#exportBalooFiles").click(function(){
+	
+	
+	$.get("http://localhost:80/exportBalooJSON", function(data){
+		console.log("received response", data);
+		localStorage.setItem("taskData", data);
+		window.location.reload(true);
+	});
+	
+});
+
 $("#runTaskOnServer").click(function(){
 
 console.log('inside runTaskOnServer')

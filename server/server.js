@@ -29,6 +29,12 @@ app.use(bodyParser.urlencoded({
 
 app.use(express.static(__dirname + '/static'));
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 var exec = require('child_process').exec;
 
 var process = require('child_process');
@@ -278,6 +284,34 @@ app.get('/launchTest',function(req,res){
   });
 
   res.end("yes.");
+});
+
+app.get('/exportBalooJSON',function(req,res){
+  console.log("inside exportBalooJSON");
+
+	exec('D:\\SIMS\\RunnerLauncher\\server\\run.bat', function(error, stdout, stderr) {
+		console.log('stdout: ' + stdout);
+		console.log('stderr: ' + stderr);
+		if (error !== null) {
+		  console.log('exec error: ' + error);
+		}
+		
+		
+		
+  });
+	
+	fs.readFile('D:\\SIMS\\RunnerLauncher\\server\\output\\SKL16_WD_01_01_08_T1.json', 'utf8', function(err, file) {  
+            if(err) {  
+                // write an error response or nothing here  
+                return;  
+            }  
+            console.log("json read successfully", file);
+			 res.writeHead(200, {"Content-Type": "application/json"});
+			var jsonData = JSON.stringify(file);
+            res.end(jsonData);
+			
+        });
+	
 });
 
 /*setInterval(function() {
