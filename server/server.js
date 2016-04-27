@@ -291,7 +291,7 @@ app.post('/exportBalooJSON',function(req,res){
 	console.log("taskIdName: " , taskIdName);
 	
 	
-		fs.writeFile('./tasklist.txt', taskIdName, function(error) {
+		fs.writeFile('./task-creator/tasklist.txt', taskIdName, function(error) {
 			
 			if (error) {
 			  console.error("write error:  " + error.message);
@@ -299,7 +299,7 @@ app.post('/exportBalooJSON',function(req,res){
 			} else {
 
 	
-					exec(__dirname + '\\run.bat', function(error, stdout, stderr) {
+					exec(__dirname + '\\task-creator\\run.bat', function(error, stdout, stderr) {
 
 						if (error !== null) {
 						  console.log('exec error: ' + error);
