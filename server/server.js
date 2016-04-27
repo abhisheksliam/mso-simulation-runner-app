@@ -290,33 +290,40 @@ app.post('/exportBalooJSON',function(req,res){
     var taskIdName=req.body.taskIdName;
 	console.log("taskIdName: " , taskIdName);
 	
-	fs.writeFile('D:\\SIMS\\RunnerLauncher\\server\\tasklist.txt', taskIdName, function(error) {
-        if (error) {
-          console.error("write error:  " + error.message);
-		  res.end();
-        } else {
+	
+		fs.writeFile('./tasklist.txt', taskIdName, function(error) {
 			
-        	exec('D:\\SIMS\\RunnerLauncher\\server\\run.bat', function(error, stdout, stderr) {
-				
-				if (error !== null) {
-				  console.log('exec error: ' + error);
-				  res.end();
-				}
+			if (error) {
+			  console.error("write error:  " + error.message);
+			  res.end();
+			} else {
 
-				fs.readFile('D:\\SIMS\\RunnerLauncher\\server\\output\\SKL16_WD_01_01_08_T1.json', 'utf8', function(err, file) {  
-					if(err) {  
-						console.log('read error: ' + err);
-						res.end();
-					}  
-					console.log("json read successfully", file);
-					
-					res.writeHead(200, {"Content-Type": "application/json"});
-					var jsonData = JSON.stringify(file);
-					res.end(jsonData);
+	
+					exec(__dirname + '\\run.bat', function(error, stdout, stderr) {
+
+						if (error !== null) {
+						  console.log('exec error: ' + error);
+						  res.end();
+						}
+							
+						taskIdName = taskIdName.replace(/\./g, "_");
+						
+						fs.readFile('./output/' + taskIdName + '.json', 'utf8', function(err, file) {  
+								if(err) {  
+									console.log('read error: ' + err);
+									res.end();
+								}  
+								console.log("json read successfully", file);
+
+								res.writeHead(200, {"Content-Type": "application/json"});
+								var jsonData = JSON.stringify(file);
+								res.end(jsonData);
+							
+						});
 				});
-			});
-	    }
-    });
+	
+			}
+		});
 	
 	
 });

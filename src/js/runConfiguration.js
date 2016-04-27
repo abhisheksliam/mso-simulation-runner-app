@@ -420,7 +420,6 @@ $("#exportBalooFiles").click(function(){
 	var taskIdName = $("#inputTaskId").val();
 	
 	$.post("http://localhost:80/exportBalooJSON",{taskIdName: taskIdName}, function(data){
-		console.log("received response", data);
 		localStorage.setItem("taskData", data);
 		window.location.reload(true);
 	});
