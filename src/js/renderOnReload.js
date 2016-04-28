@@ -49,11 +49,10 @@ for(var i=0;i<taskData.items.length;i++){
 
     $('.method-details-section').hide();
     $('.action-details-section').hide();
-    $('.item-node').removeClass('active');
-    updateBreadcrum({"item":"","method":"","action":""});
+    updateBreadcrum({"item":"1","method":"","action":""});
     $('#b_action').hide();
     $('#b_method').hide();
-    $('#b_item').hide();
+   
     $('#T1').removeClass('active');
     $('#A1').removeClass('active');
 
@@ -64,9 +63,11 @@ for(var i=0;i<taskData.items.length;i++){
         currentScenario = 'T1';
     }
 
-    $('#b_scenario').html('<i class="fa fa-cubes"> Scenario ' + currentScenario);
+    $('#b_scenario span').html(currentScenario);
     $('#b_scenario').attr('data-scenario', currentScenario);
     $('#'+currentScenario).addClass('active');
+	
+	$('.item-node').eq(0).find('.method-node').removeClass('active');
 
 };
 

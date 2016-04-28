@@ -7,12 +7,12 @@ function updateBreadcrum(data, pageView){
 
         console.log('updating breadcrum for .. ' + data.item + data.method + data.action );
         $('#b_item').show();
-        $('#b_item').html('Item ' + data.item);
-        $('#b_item').attr('data-item', data.item);
+        $('#b_item a').html('Item ' + data.item);
+        $('#b_item a').attr('data-item', data.item);
 
         if(data.method !== "" && data.method !== null) {
-            $('#b_method').html('Method ' + data.method);
-            $('#b_method').attr('data-method', data.method);
+            $('#b_method a').html('Method ' + data.method);
+            $('#b_method a').attr('data-method', data.method);
             $('#b_method').show();
 
             if(data.action !== "" && data.action !== null) {
@@ -115,22 +115,26 @@ $('.sidebar-menu').on('click', '.add-action', function(e) {
 
 
 $('.sidebar-menu').on('click', '.item-node', function(event) {
-    var targetNode = $(event.target).parent();
+	if($(event.target).closest('li').hasClass( "item-node" )) {
+    	updateBreadcrum($(this).data('tree'));
+		
+		$('.method-details-section').hide();
+        $('.action-details-section').hide();
+	    $('.baloo-description').hide();
 
-    var el = $(this);
-    var clickedItemNodeDataTree = targetNode.data('tree');
-    updateBreadcrum(clickedItemNodeDataTree);
+        renderCurrentActionList();
+	}
 });
 
 
 $('.sidebar-menu').on('click', '.method-node', function(e) {
-    var targetNode = $(e.target).parent();
-
-    var el = $(this);
-    var clickedAddActionNodeDataTree = targetNode.data('tree');
+	var el = $(this);
+	
+    var clickedAddActionNodeDataTree = el.data('tree');
     clickedAddActionNodeDataTree.action = "";
+	
     updateBreadcrum(clickedAddActionNodeDataTree);
-
+	
     el.addClass( 'active' );
 });
 

@@ -277,18 +277,6 @@ $('.sidebar-menu').on('click', '.action-node', function(e) {
 
 });
 
-$('.item-node a').click(function(e) {
-
-    if (e.target !== this)
-        return;
-
-    $('.method-details-section').hide();
-    $('.action-details-section').hide();
-	$('.baloo-description').hide();
-
-    renderCurrentActionList();
-});
-
 $('#saveActionButton').click(function(e){
     renderCurrentActionList();
 });
