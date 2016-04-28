@@ -9,15 +9,16 @@ function updateBreadcrum(data, pageView){
         $('#b_item').show();
         $('#b_item a').html('Item ' + data.item);
         $('#b_item a').attr('data-item', data.item);
-
+		
+		$('#b_method a').attr('data-method', data.method);
+		$('#b_action').attr('data-action', data.action);
+		
         if(data.method !== "" && data.method !== null) {
             $('#b_method a').html('Method ' + data.method);
-            $('#b_method a').attr('data-method', data.method);
             $('#b_method').show();
 
             if(data.action !== "" && data.action !== null) {
                 $('#b_action').html('Action ' + data.action);
-                $('#b_action').attr('data-action', data.action);
                 $('#b_action').show();
 
                 $('.item-node').eq(parseInt(data.item)-1).find('.method-node').eq(parseInt(data.method)-1).find('.action-node').eq(parseInt(data.action)-1).addClass('active');
@@ -137,7 +138,18 @@ $('.sidebar-menu').on('click', '.method-node', function(e) {
     var clickedAddActionNodeDataTree = el.data('tree');
     clickedAddActionNodeDataTree.action = "";
 	
-    updateBreadcrum(clickedAddActionNodeDataTree);
+	if(clickedAddActionNodeDataTree.method === $('#b_method a').attr('data-method')) {
+		updateBreadcrum({"item":clickedAddActionNodeDataTree.item,"method":"","action":""});
+		$('.method-details-section').hide();
+	} else {
+    	updateBreadcrum(clickedAddActionNodeDataTree);
+		$('.method-details-section').show();
+	}
+	
+	$('.action-details-section').hide();
+    $('.baloo-description').hide();
+
+    renderCurrentActionList();
 	
     el.addClass( 'active' );
 });
@@ -151,6 +163,12 @@ $('.sidebar-menu').on('click', '.action-node', function(e) {
     clickedAddActionNodeDataTree.action = ($(this).index() + 1);
 
     updateBreadcrum(clickedAddActionNodeDataTree, 'action');
+	
+	$('.method-details-section').hide();
+    $('.action-details-section').show();
+
+    renderCurrentActionList();
+	
     $('.action-node').removeClass('active');
     el.addClass( 'active' );
     e.stopPropagation();

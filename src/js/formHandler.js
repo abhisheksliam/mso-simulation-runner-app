@@ -247,31 +247,11 @@ $('.action-details-section').hide();
 $('.method-details-section').hide();
 $('.baloo-description').hide();
 
-$('.sidebar-menu').on('click', '.method-node', function(e) {
-
-    $('.action-details-section').hide();
-    $('.method-details-section').show();
-	$('.baloo-description').hide();
-
-    renderCurrentActionList();
-
-});
-
 $('.sidebar-menu').on('click', '.add-method a', function(e) {
 
     $('.action-details-section').hide();
     $('.method-details-section').show();
 	$('.baloo-description').hide();
-
-    renderCurrentActionList();
-
-});
-
-
-$('.sidebar-menu').on('click', '.action-node', function(e) {
-
-    $('.method-details-section').hide();
-    $('.action-details-section').show();
 
     renderCurrentActionList();
 
