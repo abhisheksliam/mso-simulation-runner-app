@@ -212,14 +212,22 @@ $('.sidebar-menu').on('click', '.delete-method-node', function(e) {
     });
 
     currentMethodNumber = parseInt(_currentAddMethodData.method);
-    updateBreadcrum({"item":_currentAddMethodData.item,"method":"","action":""});
-    methodTree.remove();
+	if(currentMethodNumber ===1){
+        updateBreadcrum({"item":_currentAddMethodData.item,"method":currentMethodNumber,"action":""});
+    }else{
+		updateBreadcrum({"item":_currentAddMethodData.item,"method":currentMethodNumber - 1,"action":""});
+    }
+  	
+	methodTree.remove();
     
 	localStorage.setItem('taskData', JSON.stringify(taskData));
-    $('.method-details-section').hide();
+    
     $('.action-details-section').hide();
+    $('.item-node').eq(_currentAddMethodData.item -1).find('.active').removeClass('active');
+	$('.item-node').eq(_currentAddMethodData.item -1).find('.action-tree').hide();
+	$('.item-node').eq(_currentAddMethodData.item -1).find('.method-node').eq(currentMethodNumber - 1).addClass('active');
     refreshForm();
-    e.stopPropagation();
+	e.stopPropagation();
 });
 
 
