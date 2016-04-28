@@ -116,13 +116,17 @@ $('.sidebar-menu').on('click', '.add-action', function(e) {
 
 $('.sidebar-menu').on('click', '.item-node', function(event) {
 	if($(event.target).closest('li').hasClass( "item-node" )) {
-    	updateBreadcrum($(this).data('tree'));
+		
+		if($(this).data('tree').item === $('#b_item a').attr('data-item')) {
+			updateBreadcrum({"item":"","method":"","action":""});
+			$('#b_item').hide();
+		} else {
+    		updateBreadcrum($(this).data('tree'));
+		}
 		
 		$('.method-details-section').hide();
         $('.action-details-section').hide();
 	    $('.baloo-description').hide();
-
-        renderCurrentActionList();
 	}
 });
 
