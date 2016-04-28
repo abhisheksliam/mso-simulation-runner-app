@@ -223,6 +223,8 @@ $('.sidebar-menu').on('click', '.delete-method-node', function(e) {
 	localStorage.setItem('taskData', JSON.stringify(taskData));
     
     $('.action-details-section').hide();
+    $('.method-details-section').show();
+	
     $('.item-node').eq(_currentAddMethodData.item -1).find('.active').removeClass('active');
 	$('.item-node').eq(_currentAddMethodData.item -1).find('.action-tree').hide();
 	$('.item-node').eq(_currentAddMethodData.item -1).find('.method-node').eq(currentMethodNumber - 1).addClass('active');
