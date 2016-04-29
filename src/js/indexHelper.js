@@ -79,9 +79,18 @@ $('.sidebar-menu').on('click', '.add-method', function(e) {
         el.remove();
 
 		methodTree.append('<li data-tree=\'{"item":"' + (parseInt(clickedAddMethodNodeDataTree.item)) + '","method":"' + (parseInt(clickedAddMethodNodeDataTree.method) + 1) + '","action":""}\' class="add-method"><a href="#"><i class="fa fa-plus-square-o text-aqua"></i> <span>Add New Method</span></a></li><li data-tree=\'{"item":"' + (parseInt(clickedAddMethodNodeDataTree.item)) + '","method":"' + (parseInt(clickedAddMethodNodeDataTree.method) + 1) + '","action":""}\' class="duplicate-method"><a href="#"><i class="fa fa-copy text-aqua"></i> <span>Duplicate Method</span></a></li>');
+		
+		$('.item-node').eq(clickedAddMethodNodeDataTree.item - 1).find('.active').removeClass('active');
+		$('.item-node').eq(clickedAddMethodNodeDataTree.item - 1).find('.action-tree').hide();
+		$('.item-node').eq(clickedAddMethodNodeDataTree.item - 1).find('.method-node').eq(clickedAddMethodNodeDataTree.method).addClass('active');
+		$('.item-node').eq(clickedAddMethodNodeDataTree.item - 1).find('.method-node').eq(clickedAddMethodNodeDataTree.method).find('.action-tree').show();
+		
+		$('.reorder-up, .reorder-down').hide();
+        $('.action-details-section').hide();
+    	$('.method-details-section').show();
+		$('.baloo-description').hide();
 
-        $('.reorder-up, .reorder-down').hide();
-        renderCurrentActionList();
+    	renderCurrentActionList();
     }
     else{
         alert('Please save previous method data');
@@ -246,6 +255,8 @@ $('.sidebar-menu').on('click', '.delete-method-node', function(e) {
     
     $('.action-details-section').hide();
     $('.method-details-section').show();
+	$('.reorder-up, .reorder-down').hide();
+	$('.baloo-description').hide();
 	
     $('.item-node').eq(_currentAddMethodData.item -1).find('.active').removeClass('active');
 	$('.item-node').eq(_currentAddMethodData.item -1).find('.action-tree').hide();

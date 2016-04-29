@@ -247,16 +247,6 @@ $('.action-details-section').hide();
 $('.method-details-section').hide();
 $('.baloo-description').hide();
 
-$('.sidebar-menu').on('click', '.add-method a', function(e) {
-
-    $('.action-details-section').hide();
-    $('.method-details-section').show();
-	$('.baloo-description').hide();
-
-    renderCurrentActionList();
-
-});
-
 $('#saveActionButton').click(function(e){
     renderCurrentActionList();
 });
