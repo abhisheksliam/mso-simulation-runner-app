@@ -7,6 +7,10 @@ body {
     height: 100%;
 }
 
+.breadcrumb #b_scenario a, .breadcrumb #b_item a, .breadcrumb #b_method a {
+    cursor: default;
+}
+
 .baloo-description {
     min-height: 3em;
     display: none;
