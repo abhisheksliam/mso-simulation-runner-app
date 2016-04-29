@@ -250,7 +250,7 @@ $('.sidebar-menu').on('click', '.delete-method-node', function(e) {
     $('.item-node').eq(_currentAddMethodData.item -1).find('.active').removeClass('active');
 	$('.item-node').eq(_currentAddMethodData.item -1).find('.action-tree').hide();
 	$('.item-node').eq(_currentAddMethodData.item -1).find('.method-node').eq(currentMethodNumber - 1).addClass('active');
-    refreshForm();
+   
 	e.stopPropagation();
 });
 
@@ -271,8 +271,15 @@ $('.sidebar-menu').on('click', '.duplicate-method', function(e) {
 
     if(taskData.items[parseInt(clickedMethodDataTree.item)-1].methods.length >= parseInt(clickedMethodDataTree.method)){
 		copyMethod(currentItemNumber, elSelectedMethodNode, parseInt(clickedMethodDataTree.method));
-    $('.action-details-section').hide();
-    $('.method-details-section').show();
+		
+		$('.item-node').eq(currentItemNumber - 1).find('.active').removeClass('active');
+		$('.item-node').eq(currentItemNumber - 1).find('.action-tree').hide();
+		$('.item-node').eq(currentItemNumber - 1).find('.method-node').eq(clickedMethodDataTree.method).addClass('active');
+		$('.item-node').eq(currentItemNumber - 1).find('.method-node').eq(clickedMethodDataTree.method).find('.action-tree').show();
+		
+		$('.action-details-section').hide();
+		$('.method-details-section').show();
+		
     	el.remove();
 	} else {
 		alert('Please save previous method data');
