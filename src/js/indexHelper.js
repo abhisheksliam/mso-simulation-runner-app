@@ -80,16 +80,18 @@ $('.sidebar-menu').on('click', '.add-method', function(e) {
 
 		methodTree.append('<li data-tree=\'{"item":"' + (parseInt(clickedAddMethodNodeDataTree.item)) + '","method":"' + (parseInt(clickedAddMethodNodeDataTree.method) + 1) + '","action":""}\' class="add-method"><a href="#"><i class="fa fa-plus-square-o text-aqua"></i> <span>Add New Method</span></a></li><li data-tree=\'{"item":"' + (parseInt(clickedAddMethodNodeDataTree.item)) + '","method":"' + (parseInt(clickedAddMethodNodeDataTree.method) + 1) + '","action":""}\' class="duplicate-method"><a href="#"><i class="fa fa-copy text-aqua"></i> <span>Duplicate Method</span></a></li>');
 		
-		$('.item-node').eq(clickedAddMethodNodeDataTree.item - 1).find('.active').removeClass('active');
-		$('.item-node').eq(clickedAddMethodNodeDataTree.item - 1).find('.action-tree').hide();
-		$('.item-node').eq(clickedAddMethodNodeDataTree.item - 1).find('.method-node').eq(clickedAddMethodNodeDataTree.method).addClass('active');
-		$('.item-node').eq(clickedAddMethodNodeDataTree.item - 1).find('.method-node').eq(clickedAddMethodNodeDataTree.method).find('.action-tree').show();
-		
 		$('.reorder-up, .reorder-down').hide();
+		$('.delete-method-node').hide();
         $('.action-details-section').hide();
     	$('.method-details-section').show();
 		$('.baloo-description').hide();
-
+		
+		$('.item-node').eq(clickedAddMethodNodeDataTree.item - 1).find('.active').removeClass('active');
+		$('.item-node').eq(clickedAddMethodNodeDataTree.item - 1).find('.action-tree').hide();
+		$('.item-node').eq(clickedAddMethodNodeDataTree.item - 1).find('.method-node').eq(clickedAddMethodNodeDataTree.method).addClass('active');
+		$('.item-node').eq(clickedAddMethodNodeDataTree.item - 1).find('.method-node').eq(clickedAddMethodNodeDataTree.method).find('.delete-method-node').show();
+		$('.item-node').eq(clickedAddMethodNodeDataTree.item - 1).find('.method-node').eq(clickedAddMethodNodeDataTree.method).find('.action-tree').show();
+		
     	renderCurrentActionList();
     }
     else{
@@ -134,6 +136,9 @@ $('.sidebar-menu').on('click', '.item-node', function(event) {
     		updateBreadcrum($(this).data('tree'));
 		}
 		
+		$('.delete-method-node').hide();
+    	$('.reorder-up, .reorder-down').hide();
+		$('.item-node').eq($(this).data('tree').item - 1).find('.action-tree').hide();
 		$('.method-details-section').hide();
         $('.action-details-section').hide();
 	    $('.baloo-description').hide();
@@ -144,17 +149,19 @@ $('.sidebar-menu').on('click', '.item-node', function(event) {
 $('.sidebar-menu').on('click', '.method-node', function(e) {
 	var el = $(this);
 
-    //var currentMethodClass = el.hasClass('active');
     var currentMethodHasActiveAction = el.hasClass('active') && el.find('.action-node').hasClass('active');
 
     var clickedAddActionNodeDataTree = el.data('tree');
     clickedAddActionNodeDataTree.action = "";
+    $('.delete-method-node').hide();
+    $('.reorder-up, .reorder-down').hide();
 
     if (currentMethodHasActiveAction){
         updateBreadcrum(clickedAddActionNodeDataTree);
          $('.action-details-section').hide();
          $('.method-details-section').show();
          el.find('.action-node').removeClass('active');
+         el.find('.delete-method-node').show();
         e.stopPropagation();
     }else{
         if (clickedAddActionNodeDataTree.method === $('#b_method a').attr('data-method')) {
@@ -164,6 +171,7 @@ $('.sidebar-menu').on('click', '.method-node', function(e) {
         else {
             updateBreadcrum(clickedAddActionNodeDataTree);
             $('.method-details-section').show();
+            el.find('.delete-method-node').show();
         }
 
         $('.action-details-section').hide();
@@ -269,11 +277,14 @@ $('.sidebar-menu').on('click', '.delete-method-node', function(e) {
     $('.action-details-section').hide();
     $('.method-details-section').show();
 	$('.reorder-up, .reorder-down').hide();
+	$('.delete-method-node').hide();
 	$('.baloo-description').hide();
 	
     $('.item-node').eq(_currentAddMethodData.item -1).find('.active').removeClass('active');
 	$('.item-node').eq(_currentAddMethodData.item -1).find('.action-tree').hide();
 	$('.item-node').eq(_currentAddMethodData.item -1).find('.method-node').eq(currentMethodNumber - 1).addClass('active');
+	$('.item-node').eq(_currentAddMethodData.item -1).find('.method-node').eq(currentMethodNumber - 1).find('.delete-method-node').show();
+	$('.item-node').eq(_currentAddMethodData.item -1).find('.method-node').eq(currentMethodNumber - 1).find('.action-tree').show();
    
 	e.stopPropagation();
 });
@@ -299,6 +310,7 @@ $('.sidebar-menu').on('click', '.duplicate-method', function(e) {
 		$('.item-node').eq(currentItemNumber - 1).find('.active').removeClass('active');
 		$('.item-node').eq(currentItemNumber - 1).find('.action-tree').hide();
 		$('.item-node').eq(currentItemNumber - 1).find('.method-node').eq(clickedMethodDataTree.method).addClass('active');
+		$('.item-node').eq(currentItemNumber - 1).find('.method-node').eq(clickedMethodDataTree.method).find('.delete-method-node').show();
 		$('.item-node').eq(currentItemNumber - 1).find('.method-node').eq(clickedMethodDataTree.method).find('.action-tree').show();
 		
 		$('.action-details-section').hide();
@@ -361,16 +373,12 @@ currentActionNumber = clickedAddActionNodeDataTree.action + 1 ;
 });
 
 $('.reorder-up, .reorder-down').hide();
-
-$('.sidebar-menu').on('click', '.method-node, .item-node', function(e) {
-
-    $('.reorder-up, .reorder-down').hide()
-});
+$('.delete-method-node').hide();
 
 $('.sidebar-menu').on('click', '.action-node', function(e) {
     var el = $(this).parents('.method-node').first();
 
-    el.find('.reorder-up, .reorder-down').show()
+    el.find('.reorder-up, .reorder-down').show();
 });
 
 var copyMethod = function(selectedItem, selectedMethod, newMethodIndex){

@@ -5,7 +5,7 @@
 
 var _addMethod = function(item){
 
-    $('.item-node').eq((parseInt(item) - 1)).find('.add-method').click()
+    $('.item-node').eq((parseInt(item) - 1)).find('.add-method').click();
 };
 
 var _addAction = function(item,method,action,actionName){
@@ -68,6 +68,7 @@ for(var i=0;i<taskData.items.length;i++){
     $('#'+currentScenario).addClass('active');
 	
 	$('.item-node').eq(0).find('.method-node').removeClass('active');
+	$('.delete-method-node').hide();
 
 };
 
