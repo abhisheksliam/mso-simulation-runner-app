@@ -49,7 +49,6 @@ for(var i=0;i<taskData.items.length;i++){
 
     $('.method-details-section').hide();
     $('.action-details-section').hide();
-    updateBreadcrum({"item":"1","method":"","action":""});
     $('#b_action').hide();
     $('#b_method').hide();
    
@@ -67,8 +66,10 @@ for(var i=0;i<taskData.items.length;i++){
     $('#b_scenario').attr('data-scenario', currentScenario);
     $('#'+currentScenario).addClass('active');
 	
-	$('.item-node').eq(0).find('.method-node').removeClass('active');
 	$('.delete-method-node').hide();
+
+    updateBreadcrum({"item":"","method":"","action":""});
+    $('.item-node').removeClass('active');
 
 };
 

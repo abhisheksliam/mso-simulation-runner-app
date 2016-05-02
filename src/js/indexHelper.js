@@ -6,10 +6,15 @@ function updateBreadcrum(data, pageView){
     if(data !== undefined && data !== null){
 
         console.log('updating breadcrum for .. ' + data.item + data.method + data.action );
-        $('#b_item').show();
-        $('#b_item a').html('Item ' + data.item);
+
+        if(data.item !== "" && data.item !== null) {
+            $('#b_item').show();
+            $('#b_item a').html('Item ' + data.item);
+        }else{
+            $('#b_item').hide();
+        }
+
         $('#b_item a').attr('data-item', data.item);
-		
 		$('#b_method a').attr('data-method', data.method);
 		$('#b_action').attr('data-action', data.action);
 		
