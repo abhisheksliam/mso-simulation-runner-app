@@ -109,6 +109,7 @@ $('.sidebar-menu').on('click', '.add-action', function(e) {
     var el = $(this);
     var clickedAddActionNodeDataTree = el.data('tree');
 
+    clickedAddActionNodeDataTree.method = parseInt(currentMethodNumber);
     clickedAddActionNodeDataTree.action = (el.index());
 
     console.log(clickedAddActionNodeDataTree.action);
@@ -217,6 +218,7 @@ $('.sidebar-menu').on('click', '.delete-action-node', function(e) {
     var el = $(this);
     var actionTree = el.parent().parent('.action-node');
     var currentAddActionData = $(this).parent().parent().parent().parent().data('tree');
+    currentAddActionData.method = parseInt(currentMethodNumber);
     currentAddActionData.action = ($(this).parent().parent().index() + 1);
 
     var updatedAddActionData = {"item":currentAddActionData.item,"method":currentAddActionData.method,"action":(parseInt(currentAddActionData.action) - 1)};
@@ -332,6 +334,8 @@ $('.sidebar-menu').on('click', '.copy-action', function(e) {
 
     var el = $(this).parent();
     var clickedAddActionNodeDataTree = el.data('tree');
+    clickedAddActionNodeDataTree.method = parseInt(currentMethodNumber);
+
     var taskData =   JSON.parse(localStorage.getItem('taskData'));
 
     if(taskData.items[parseInt(clickedAddActionNodeDataTree.item)-1].methods[parseInt(clickedAddActionNodeDataTree.method)-1].actions.length !== 0){
