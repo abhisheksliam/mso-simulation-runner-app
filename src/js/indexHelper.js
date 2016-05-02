@@ -158,7 +158,7 @@ $('.sidebar-menu').on('click', '.method-node', function(e) {
          $('.method-details-section').show();
          el.find('.action-node').removeClass('active');
         e.stopPropagation();
-    }else{inde
+    }else{
 
         if ( !currentMethodHasActiveAction && clickedAddActionNodeDataTree.method === $('#b_method a').attr('data-method')) {
             updateBreadcrum({"item":clickedAddActionNodeDataTree.item,"method":"","action":""});
