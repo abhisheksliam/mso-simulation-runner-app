@@ -143,24 +143,40 @@ $('.sidebar-menu').on('click', '.item-node', function(event) {
 
 $('.sidebar-menu').on('click', '.method-node', function(e) {
 	var el = $(this);
-	
+
+    var currentMethodClass = el.hasClass('active');
+    var currentMethodHasActiveAction = el.hasClass('active') && el.find('.action-node').hasClass('active');
+
+    console.log('&&&&&&   :   ' + currentMethodClass);
+
     var clickedAddActionNodeDataTree = el.data('tree');
     clickedAddActionNodeDataTree.action = "";
-	
-	if(clickedAddActionNodeDataTree.method === $('#b_method a').attr('data-method')) {
-		updateBreadcrum({"item":clickedAddActionNodeDataTree.item,"method":"","action":""});
-		$('.method-details-section').hide();
-	} else {
-    	updateBreadcrum(clickedAddActionNodeDataTree);
-		$('.method-details-section').show();
-	}
-	
-	$('.action-details-section').hide();
-    $('.baloo-description').hide();
 
-    renderCurrentActionList();
-	
-    el.addClass( 'active' );
+    if (currentMethodHasActiveAction){
+        updateBreadcrum(clickedAddActionNodeDataTree);
+         $('.action-details-section').hide();
+         $('.method-details-section').show();
+         el.find('.action-node').removeClass('active');
+        e.stopPropagation();
+    }else{inde
+
+        if ( !currentMethodHasActiveAction && clickedAddActionNodeDataTree.method === $('#b_method a').attr('data-method')) {
+            updateBreadcrum({"item":clickedAddActionNodeDataTree.item,"method":"","action":""});
+            $('.method-details-section').hide();
+        }
+        else {
+            updateBreadcrum(clickedAddActionNodeDataTree);
+            $('.method-details-section').show();
+        }
+
+        $('.action-details-section').hide();
+        $('.baloo-description').hide();
+
+        renderCurrentActionList();
+
+        el.addClass( 'active' );
+    }
+
 });
 
 $('.sidebar-menu').on('click', '.action-node', function(e) {
