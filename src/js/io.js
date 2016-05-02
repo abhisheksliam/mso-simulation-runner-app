@@ -220,11 +220,14 @@ var initCurrentMethodData = function(callback){
             if(taskData.items[parseInt(currentItemNumber) - 1].methods[(parseInt(currentMethodNumber)-1)].init){
 
                 taskData.items[parseInt(currentItemNumber) - 1].methods[(parseInt(currentMethodNumber)-1)].type  = methodType;
+				
+				$('.item-node').eq(parseInt(currentItemNumber) - 1).find('.method-node').eq((parseInt(currentMethodNumber)-1)).find('.method-type').html("(" + methodType + ")");
 
             }
         }catch(er){
             taskData.items[parseInt(currentItemNumber) - 1].init = true;
             addValue(taskData.items[parseInt(currentItemNumber)-1],'methods', (parseInt(currentMethodNumber)-1) ,currentMethodDetails);
+			$('.item-node').eq(parseInt(currentItemNumber) - 1).find('.method-node').eq((parseInt(currentMethodNumber)-1)).find('.method-type').html("(" + currentMethodDetails.type + ")");
         }
 
         localStorage.setItem('taskData', JSON.stringify(taskData));
