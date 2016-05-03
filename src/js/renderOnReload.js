@@ -36,6 +36,11 @@ for(var i=0;i<taskData.items.length;i++){
                 if(j!==0){
                     _addMethod(i+1);
                 }
+				if(j===0){
+					if(taskData.items[i].methods[j].type !== undefined) {
+						$('.item-node').eq(i).find('.method-node').eq(j).find('.method-type').html("(" + taskData.items[i].methods[j].type + ")");
+					}
+				}
                 for (var k = 0; k < taskData.items[i].methods[j].actions.length; k++) {
                     if (taskData.items[i].methods[j].actions[k].init) {
 						_addAction(i+1,j+1,k+1,taskData.items[i].methods[j].actions[k].name);

@@ -48,9 +48,9 @@ var renderRunConfiguration = function(){
                 if(taskData.items[i].methods[j].init){
 
                     if(j==0){
-                        $('#item'+(i+1)+'-methods').append('<label style="margin: 5px" class="method">                    <input type="radio" data-method="'+(j+1)+'" name="item'+(i+1)+'-method" class="flat-red" checked>                    Method '+(j+1)+'                    </label>');
+                        $('#item'+(i+1)+'-methods').append('<label style="margin: 5px" class="method">                    <input type="radio" data-method="'+(j+1)+'" name="item'+(i+1)+'-method" class="flat-red" checked>                    M'+(j+1)+ ' (' + taskData.items[i].methods[j].type + ') </label>');
                     }else{
-                        $('#item'+(i+1)+'-methods').append('<label style="margin: 5px" class="method">                    <input type="radio" data-method="'+(j+1)+'" name="item'+(i+1)+'-method" class="flat-red">                    Method '+(j+1)+'                    </label>');
+                        $('#item'+(i+1)+'-methods').append('<label style="margin: 5px" class="method">                    <input type="radio" data-method="'+(j+1)+'" name="item'+(i+1)+'-method" class="flat-red">                    M'+(j+1)+ ' (' + taskData.items[i].methods[j].type + ') </label>');
                     }
 
                 }
