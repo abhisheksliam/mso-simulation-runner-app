@@ -295,11 +295,10 @@ $('.sidebar-menu').on('click', '.delete-method-node', function(e) {
 			updateBreadcrum({"item":_currentAddMethodData.item,"method":currentMethodNumber - 1,"action":""});
 		}
 		
+		renderCurrentActionList();
 		$('.method-details-section').show();
 	}
-	
-	renderCurrentActionList();
-	
+		
     $('.item-node').eq(_currentAddMethodData.item -1).find('.active').removeClass('active');
 	$('.item-node').eq(_currentAddMethodData.item -1).find('.action-tree').hide();
 	$('.item-node').eq(_currentAddMethodData.item -1).find('.method-node').eq(currentMethodNumber - 1).addClass('active');
