@@ -274,22 +274,31 @@ $('.sidebar-menu').on('click', '.delete-method-node', function(e) {
     	$(this).attr('data-tree', updatedAddMethodData); 
     });
 
-    currentMethodNumber = parseInt(_currentAddMethodData.method);
-	if(currentMethodNumber ===1){
-        updateBreadcrum({"item":_currentAddMethodData.item,"method":currentMethodNumber,"action":""});
-    }else{
-		updateBreadcrum({"item":_currentAddMethodData.item,"method":currentMethodNumber - 1,"action":""});
-    }
-  	
+    localStorage.setItem('taskData', JSON.stringify(taskData));
+	
 	methodTree.remove();
-    
-	localStorage.setItem('taskData', JSON.stringify(taskData));
-    
+	    
     $('.action-details-section').hide();
-    $('.method-details-section').show();
-	$('.reorder-up, .reorder-down').hide();
+    $('.reorder-up, .reorder-down').hide();
 	$('.delete-method-node').hide();
 	$('.baloo-description').hide();
+		
+	currentMethodNumber = parseInt(_currentAddMethodData.method);
+	
+	if(taskData.items[parseInt(_currentAddMethodData.item)-1].methods.length === 0) {
+		updateBreadcrum({"item":_currentAddMethodData.item,"method":"","action":""});
+		$('.method-details-section').hide();
+	} else {
+		if(currentMethodNumber ===1){
+        	updateBreadcrum({"item":_currentAddMethodData.item,"method":currentMethodNumber,"action":""});
+    	} else {
+			updateBreadcrum({"item":_currentAddMethodData.item,"method":currentMethodNumber - 1,"action":""});
+		}
+		
+		$('.method-details-section').show();
+	}
+	
+	renderCurrentActionList();
 	
     $('.item-node').eq(_currentAddMethodData.item -1).find('.active').removeClass('active');
 	$('.item-node').eq(_currentAddMethodData.item -1).find('.action-tree').hide();
