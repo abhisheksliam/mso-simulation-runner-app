@@ -276,8 +276,6 @@ $('.sidebar-menu').on('click', '.delete-method-node', function(e) {
     	$(this).attr('data-tree', updatedAddMethodData); 
     });
 
-    localStorage.setItem('taskData', JSON.stringify(taskData));
-	
 	methodTree.remove();
 	    
     $('.action-details-section').hide();
@@ -289,8 +287,14 @@ $('.sidebar-menu').on('click', '.delete-method-node', function(e) {
 	
 	if(taskData.items[parseInt(_currentAddMethodData.item)-1].methods.length === 0) {
 		updateBreadcrum({"item":_currentAddMethodData.item,"method":"","action":""});
+        //updating init for current item
+        taskData.items[parseInt(_currentAddMethodData.item)-1].init = false;
+        localStorage.setItem('taskData', JSON.stringify(taskData));
+
 		$('.method-details-section').hide();
 	} else {
+        localStorage.setItem('taskData', JSON.stringify(taskData));
+
 		if(currentMethodNumber ===1){
         	updateBreadcrum({"item":_currentAddMethodData.item,"method":currentMethodNumber,"action":""});
     	} else {

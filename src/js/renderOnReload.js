@@ -113,7 +113,7 @@ var renderPathwayFromLsm = function(){
         tempStr += ' : ' + pathwayListData[q+1];
 
         $('#pathwayList').append('<li><div class=" bg-gray" style="position: relative; z-index: auto; left: 0px; top: 0px; padding: 5px 15px 5px 5px; margin: 2px; color: black">'
-        +tempStr.toString()+'<a href="#" class="deletePathway"><span class="label button pull-right bg-red delete-method-node"><i class="fa fa-times"></i></span></a></div></li>');
+        +tempStr.toString()+'<a href="#" class="deletePathway"><span class="label button pull-right bg-red delete-pathway-node"><i class="fa fa-times"></i></span></a></div></li>');
 
     }
 
