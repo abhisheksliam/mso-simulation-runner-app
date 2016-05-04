@@ -159,9 +159,11 @@ $('.sidebar-menu').on('click', '.item-node', function(event) {
 $('.sidebar-menu').on('click', '.method-node', function(e) {
 	var el = $(this);
 
+    var currentMethodIndex = ($(this).index() + 1);
     var currentMethodHasActiveAction = el.hasClass('active') && el.find('.action-node').hasClass('active');
 
     var clickedAddActionNodeDataTree = el.data('tree');
+    clickedAddActionNodeDataTree.method = currentMethodIndex;
     clickedAddActionNodeDataTree.action = "";
     $('.delete-method-node').hide();
     $('.reorder-up, .reorder-down').hide();
@@ -174,7 +176,7 @@ $('.sidebar-menu').on('click', '.method-node', function(e) {
          el.find('.delete-method-node').show();
         e.stopPropagation();
     }else{
-        if (clickedAddActionNodeDataTree.method === $('#b_method a').attr('data-method')) {
+        if (clickedAddActionNodeDataTree.method === parseInt($('#b_method a').attr('data-method'))) {
             updateBreadcrum({"item":clickedAddActionNodeDataTree.item,"method":"","action":""});
             $('.method-details-section').hide();
         }
