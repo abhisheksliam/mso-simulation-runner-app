@@ -415,6 +415,21 @@ if(pathwayListData !== undefined){
     return js_beautify(runJFinal);
 };
 
+$("#exportBalooFiles").click(function(){
+	
+	var taskIdName = $("#inputTaskId").val();
+	if (taskIdName.lastIndexOf(".T1") === -1 && taskIdName.lastIndexOf(".A1") === -1) {
+		alert("Please add scenario to Task id");	
+	} else {
+	
+		$.post("http://localhost:80/exportBalooJSON",{taskIdName: taskIdName}, function(data){
+			localStorage.setItem("taskData", data);
+			window.location.reload(true);
+		});
+	}
+	
+});
+
 $("#runTaskOnServer").click(function(){
 
 console.log('inside runTaskOnServer')
