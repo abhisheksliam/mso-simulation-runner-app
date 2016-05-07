@@ -415,19 +415,33 @@ if(pathwayListData !== undefined){
     return js_beautify(runJFinal);
 };
 
-$("#exportBalooFiles").click(function(){
+$("#generateAndLoadJSON").click(function(){
+	$("#generateAndLoadJSON").addClass("disabled");
+	$("#generateAndLoadJSON").prop('disabled', true);
+	$(".nlp_error").addClass("hide");
+	$(".nlp_warning").addClass("hide");
+	$("#loader").removeClass("hidden");
 	
-	var taskIdName = $("#inputTaskId").val();
+	var taskIdName = $("#inputTaskScenario").val();
 	if (taskIdName.lastIndexOf(".T1") === -1 && taskIdName.lastIndexOf(".A1") === -1) {
-		alert("Please add scenario to Task id");	
+		$(".nlp_warning").removeClass("hide");
+		$("#generateAndLoadJSON").removeClass("disabled");
+		$("#generateAndLoadJSON").prop('disabled', false);
+		$("#loader").addClass("hidden");
 	} else {
-	
-		$.post("http://localhost:80/exportBalooJSON",{taskIdName: taskIdName}, function(data){
-			localStorage.setItem("taskData", data);
-			window.location.reload(true);
+		$.post("http://localhost:80/generateAndLoadJSON",{taskIdName: taskIdName}, function(data){
+			console.log("data after generate JSON: " ,data)
+			if(data === "error") {
+				$(".nlp_error").removeClass("hide");
+				$("#generateAndLoadJSON").removeClass("disabled");
+				$("#generateAndLoadJSON").prop('disabled', false);
+				$("#loader").addClass("hidden");
+			} else {
+				localStorage.setItem("taskData", data);
+				window.location.reload(true);
+			}
 		});
 	}
-	
 });
 
 $("#runTaskOnServer").click(function(){
