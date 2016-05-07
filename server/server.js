@@ -286,51 +286,43 @@ app.get('/launchTest',function(req,res){
   res.end("yes.");
 });
 
-app.post('/exportBalooJSON',function(req,res){
+app.post('/generateAndLoadJSON',function(req,res){
     var taskIdName=req.body.taskIdName;
-	console.log("taskIdName: " , taskIdName);
+	console.log("taskIdName in generate and load JSON: " , taskIdName);
 	
 	
-		fs.writeFile('./task-creator/tasklist.txt', taskIdName, function(error) {
+	fs.writeFile('./task-creator/tasklist.txt', taskIdName, function(error) {
 			
 			if (error) {
 			  console.error("write error:  " + error.message);
-			  res.end();
+			  res.end("error");
 			} else {
 
 					var childDir = __dirname + './task-creator';
 					exec('run.bat', {cwd: childDir}, function(error, stdout, stderr) {
 
 						if (error !== null) {
-							
-							
-						  console.log('exec error: ' + error);
-						  res.end();
+						  console.log('error executing run.bat: ' + error);
+						  res.end("error");
 						} else {
-							
-							
-							
 							taskIdName = taskIdName.replace(/\./g, "_");
+							console.log("task file name in generate and load JSON: " , taskIdName);
 
 							fs.readFile('./task-creator/output/' + taskIdName + '.json', 'utf8', function(err, file) {  
 									if(err) {  
-										console.log('read error: ' + err);
-										res.end();
-									}  
-									console.log("json read successfully", file);
-
-									res.writeHead(200, {"Content-Type": "application/json"});
-									var jsonData = JSON.stringify(file);
-									res.end(jsonData);
-
+										console.log('error in reading output file: ' + err);
+										res.end("error");
+									} else {
+								    	console.log("json read successfully");
+										res.writeHead(200, {"Content-Type": "application/json"});
+										var jsonData = JSON.stringify(file);
+										res.end(jsonData);
+									}
 							});
 						}
 				});
-	
 			}
-		});
-	
-	
+	});
 });
 
 /*setInterval(function() {
