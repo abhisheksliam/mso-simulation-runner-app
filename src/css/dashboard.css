@@ -7,6 +7,39 @@ body {
     height: 100%;
 }
 
+.hide {
+	display: none;
+}
+
+.hidden {
+	display: none !important;
+	visibility: hidden !important;
+}
+
+.nlp_error, .nlp_warning {
+	margin-top: 15px;
+}
+
+.ui-loader {
+	position: absolute;
+	top: 200px;
+    left: 500px;
+	border: 0 none;
+	z-index: 9999999;
+	height: 46px;
+	width: 46px;
+	background: none repeat scroll 0 0 transparent;
+}
+.ui-loader .icon {
+	background-color: #000000;
+	border-radius:36px 36px 36px 36px;
+	display: block;
+	height: inherit;
+	margin: 0;
+	padding: 1px;
+	width: inherit;
+}
+
 .breadcrumb #b_scenario a, .breadcrumb #b_item a, .breadcrumb #b_method a {
     cursor: default;
 }

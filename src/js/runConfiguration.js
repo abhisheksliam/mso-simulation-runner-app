@@ -415,6 +415,41 @@ if(pathwayListData !== undefined){
     return js_beautify(runJFinal);
 };
 
+$('#generateJSONModal').on('hidden.bs.modal', function (e) {
+	$(".nlp_error").addClass("hide");
+	$(".nlp_warning").addClass("hide");
+	$("#inputTaskScenario").val("")
+})
+
+$("#generateAndLoadJSON").click(function(){
+	$("#generateAndLoadJSON").addClass("disabled");
+	$("#generateAndLoadJSON").prop('disabled', true);
+	$(".nlp_error").addClass("hide");
+	$(".nlp_warning").addClass("hide");
+	$("#loader").removeClass("hidden");
+	
+	var taskIdName = $("#inputTaskScenario").val();
+	if (taskIdName.lastIndexOf(".T1") === -1 && taskIdName.lastIndexOf(".A1") === -1) {
+		$(".nlp_warning").removeClass("hide");
+		$("#generateAndLoadJSON").removeClass("disabled");
+		$("#generateAndLoadJSON").prop('disabled', false);
+		$("#loader").addClass("hidden");
+	} else {
+		$.post("http://localhost:80/generateAndLoadJSON",{taskIdName: taskIdName}, function(data){
+			console.log("data after generate JSON: " ,data)
+			if(data === "error") {
+				$(".nlp_error").removeClass("hide");
+				$("#generateAndLoadJSON").removeClass("disabled");
+				$("#generateAndLoadJSON").prop('disabled', false);
+				$("#loader").addClass("hidden");
+			} else {
+				localStorage.setItem("taskData", data);
+				window.location.reload(true);
+			}
+		});
+	}
+});
+
 $("#runTaskOnServer").click(function(){
 
 console.log('inside runTaskOnServer')
