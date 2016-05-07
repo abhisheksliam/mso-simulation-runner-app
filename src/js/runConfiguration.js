@@ -415,6 +415,12 @@ if(pathwayListData !== undefined){
     return js_beautify(runJFinal);
 };
 
+$('#generateJSONModal').on('hidden.bs.modal', function (e) {
+	$(".nlp_error").addClass("hide");
+	$(".nlp_warning").addClass("hide");
+	$("#inputTaskScenario").val("")
+})
+
 $("#generateAndLoadJSON").click(function(){
 	$("#generateAndLoadJSON").addClass("disabled");
 	$("#generateAndLoadJSON").prop('disabled', true);
