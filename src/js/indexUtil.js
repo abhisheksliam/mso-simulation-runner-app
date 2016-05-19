@@ -35,7 +35,7 @@ $('.sidebar-menu').on('click', '.reorder-up', function() {
 
         var a = $.extend(true, {}, updatedAddActionData);
         a.item = parseInt(a.item);
-        a.method = parseInt(a.method);
+        a.method = parseInt(localStorage.getItem('currentMethodNumber')); //parseInt(a.method);
         a.action = currentIndex;
         updateBreadcrum(a);
 
@@ -80,7 +80,7 @@ $('.sidebar-menu').on('click', '.reorder-down', function() {
 
         var a = $.extend(true, {}, updatedAddActionData);
         a.item = parseInt(a.item);
-        a.method = parseInt(a.method);
+        a.method = parseInt(localStorage.getItem('currentMethodNumber')); //parseInt(a.method);
         a.action = currentIndex;
         updateBreadcrum(a);
 
