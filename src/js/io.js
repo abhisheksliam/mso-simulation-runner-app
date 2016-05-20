@@ -156,7 +156,7 @@ resetLSM = function(){
 var initCurrentTaskData = function(callback){
 
     taskData.scenario = currentScenario;
-    taskData.id = $('#inputTaskId').val();
+    taskData.id = ($('#inputTaskId').val()).replace(/ /g,'');
     taskData.name = $('#inputTaskName').val();
     taskData.description = $('#taskDescription').val();
     taskData.init = true;
@@ -176,13 +176,19 @@ var initCurrentTaskData = function(callback){
         appName = 'word';
     }
 
-    taskData.appName = appName;
+    var userAppType = JSON.parse(localStorage.getItem('userAppType'));
+    if(userAppType.toUpperCase() === appName.toUpperCase()){
 
-    console.log('console.log(taskData.name) ' + taskData.name);
-    localStorage.setItem('taskData', JSON.stringify(taskData));
-    callback();
+        taskData.appName = appName;
 
-}
+        console.log('console.log(taskData.name) ' + taskData.name);
+        localStorage.setItem('taskData', JSON.stringify(taskData));
+        callback();
+
+    }else{
+        alert('Incorrect Task Id or selected App Type');
+    }
+};
 
 var saveTaskData = function(){
     initCurrentTaskData(function(){
