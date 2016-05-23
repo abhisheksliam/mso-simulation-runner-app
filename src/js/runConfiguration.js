@@ -252,9 +252,9 @@ var getRunJava = function(){
         }
     }
     // todo - update to current app name
-    var preJ = 'package sims.testcase.' +
+    var preJ = 'package test.java.testcase.' +
         taskData.appName +
-        ';    import org.testng.annotations.Test;    import sims.testcase.SimsBase;    public class Test_' +
+        ';    import org.testng.annotations.Test;    import test.java.core.SimsBaseTest;    public class Test_' +
         ((taskData.id).replace(/\./gi, "_")).trim()
 
         +
@@ -292,7 +292,7 @@ var getRunJava = function(){
 
                     var methodChecked = $('input[name="item'+(i+1)+'-method"]:checked', '#item'+(i+1)+'-methods').data('method');
 
-                    runJ = runJ + 'getAndPerformTask(' +
+                    runJ = runJ + 'executeItem(' +
                     '"' +
                     taskData.id.trim() + '.' + taskData.scenario.trim() +
                     '", ' +
@@ -340,9 +340,9 @@ var getPathwayJava = function(){
         }
     }
     // todo - update to current app name
-    var preJ = 'package sims.testcase.' +
+    var preJ = 'package test.java.testcase.' +
         taskData.appName +
-        ';    import org.testng.annotations.Test;    import sims.testcase.SimsBase;    public class Test_' +
+        ';    import org.testng.annotations.Test;    import test.java.core.SimsBaseTest;    public class Test_' +
         ((taskData.id).replace(/\./gi, "_")).trim()
 
         +
@@ -391,7 +391,7 @@ if(pathwayListData !== undefined){
 
         arrayItem.forEach(function (arrayItem2) {
 
-            runJ = runJ + 'getAndPerformTask(' +
+            runJ = runJ + 'executeItem(' +
             '"' +
             taskData.id.trim() + '.' + taskData.scenario.trim() +
             '", ' +
