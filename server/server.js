@@ -373,7 +373,7 @@ app.get('/generateTestFilesDist',function(req,res){
 
   var xmlbasepath = _localSrcBasepath +"\\test\\resources\\taskXML"+_taskXmlPath+"\\"+xmlDistFilename;
   var javabasepath = _localSrcBasepath +"\\test\\java\\sims\\testcase\\"+_appName+"\\"+javaDistFilename;
-  var jsonbasepath = _localSrcBasepath +"\\test\\resources\\taskXML"+_taskXmlPath+"\\"+jsonDistFilename;
+  var jsonbasepath = _localSrcBasepath +"\\test\\resources\\taskJSON"+_taskXmlPath+"\\"+jsonDistFilename;
 
   var dir = _localSrcBasepath +"\\test\\resources\\taskXML"+_taskXmlPath+"\\";
 
@@ -537,7 +537,7 @@ var getDirFromXMlName = function(taskXMLName){
 
 function updateTaskList(appName, javaClassName) {
 
-  var appData ='<'+appName+' practice="off">  <task>sims.testcase.'+appName+'.'+javaClassName+'</task> </'+appName+'>';
+  var appData ='<task>test.java.testcase.'+appName+'.'+javaClassName+'</task>';
 
    var content;
 // First I want to read the file
@@ -564,7 +564,8 @@ function updateTaskList(appName, javaClassName) {
 
 function updatePom(appName) {
 
-  var appData ='<suiteXmlFile>src/test/java/sims/testsuite/testng_'+appName+'.xml</suiteXmlFile>';
+  //var appData ='<suiteXmlFile>src/test/java/sims/testsuite/testng_'+appName+'.xml</suiteXmlFile>';
+  var appData ='<suiteXmlFile>src/test/resources/testsuite/testsuite.xml</suiteXmlFile>';
 
   var content;
 // First I want to read the file
