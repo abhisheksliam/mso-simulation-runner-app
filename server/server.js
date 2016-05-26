@@ -155,7 +155,7 @@ app.post('/commit',function(req,res){
   _taskXmlPath = getDirFromXMlName(xmlDistFilename);
 
   updateTaskList(_appName,javaDistFilename.replace('.java',''));
-  updatePom(_appName);
+  //updatePom(_appName);
 
   res.sendfile("index-commit.html");
   console.log("xml: "+req.query.xml+" java: "+req.query.java);
@@ -195,7 +195,7 @@ try{
   _taskXmlPath = getDirFromXMlName(xmlFilename);
 
   updateTaskList(_appName,javaFilename.replace('.java',''));
-  updatePom(_appName);
+  //updatePom(_appName);
 
   res.sendfile("index-run.html");
 
@@ -537,7 +537,7 @@ var getDirFromXMlName = function(taskXMLName){
 
 function updateTaskList(appName, javaClassName) {
 
-  var appData ='<task>test.java.testcase.'+appName+'.'+javaClassName+'</task>';
+  var appData ='<task>'+appName+'.'+javaClassName+'</task>';
 
    var content;
 // First I want to read the file
@@ -550,11 +550,11 @@ function updateTaskList(appName, javaClassName) {
     // Invoke the next step here however you like
     content = content.replace('##customData##',appData);
 
-    fs.writeFile(_localSrcBasepath +"\\test\\resources\\tasklist.xml", content, function(error) {
+    fs.writeFile(_localSrcBasepath +"\\test\\resources\\config\\config.xml", content, function(error) {
       if (error) {
         console.error("write error:  " + error.message);
       } else {
-        console.log("Successful Write to " + _localSrcBasepath +"\\test\\resources\\tasklist.xml");
+        console.log("Successful Write to " + _localSrcBasepath +"\\test\\resources\\config\\config.xml");
       }
     });
 

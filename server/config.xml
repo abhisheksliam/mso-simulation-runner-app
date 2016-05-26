@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <sim5automation>
 	<server>
-		<url>http://192.168.2.150/sims4120503/SIM5Frame.aspx</url>
-		<username></username>
-		<password></password>
+		<url>http://grader13/qatrunk/SIM5Frame.aspx</url>
+		<username/>
+		<password/>
 	</server>
 	<envSet>
 		<env id="1">
@@ -43,9 +43,9 @@
 			<hubPort>5555</hubPort>
 		</env-->
 	</envSet>
-	<runTask distributed="true">
+	<tasks distributed="true" practice="off" actionScreenShot="off">
 		<env id="2">
 			##customData##
-			</env>
-	</runTask>
+		</env>
+	</tasks>
 </sim5automation>
