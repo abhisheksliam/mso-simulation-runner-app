@@ -261,7 +261,7 @@ var getRunJava = function(){
         '_' +
         taskData.scenario.toUpperCase().trim()
         +
-        ' extends SimsBase {    ';
+        ' extends SimsBaseTest {    ';
 
     var postJout = ' }';
 
@@ -349,7 +349,7 @@ var getPathwayJava = function(){
         '_' +
         taskData.scenario.toUpperCase().trim()
         +
-        ' extends SimsBase {    ';
+        ' extends SimsBaseTest {    ';
 
     var postJout = ' }';
 
