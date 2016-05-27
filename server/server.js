@@ -4,7 +4,6 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
 var _localSrcBasepath = '';
-//var _localSrcBasepath = 'S:\\sims-2016-svn\\sim5office16\\src';
 var _taskXmlPath = '';  // \\SKL16\\AC\\02\\01.08.T1
 var _appName = '';  // access
 
@@ -372,15 +371,19 @@ app.get('/generateTestFilesDist',function(req,res){
 
 
   var xmlbasepath = _localSrcBasepath +"\\test\\resources\\taskXML"+_taskXmlPath+"\\"+xmlDistFilename;
-  var javabasepath = _localSrcBasepath +"\\test\\java\\sims\\testcase\\"+_appName+"\\"+javaDistFilename;
+  var javabasepath = _localSrcBasepath +"\\test\\java\\testcase\\"+_appName+"\\"+javaDistFilename;
   var jsonbasepath = _localSrcBasepath +"\\test\\resources\\taskJSON"+_taskXmlPath+"\\"+jsonDistFilename;
 
-  var dir = _localSrcBasepath +"\\test\\resources\\taskXML"+_taskXmlPath+"\\";
+  var xmldir = _localSrcBasepath +"\\test\\resources\\taskXML"+_taskXmlPath+"\\";
+  var jsondir = _localSrcBasepath +"\\test\\resources\\taskJSON"+_taskXmlPath+"\\"
 
-  if (!fs.existsSync(dir)){
-    //fs.mkdirSync(dir);
-    fs.mkdirParent(dir, function(){
+  if (!(fs.existsSync(xmldir) && fs.existsSync(jsondir))){
+    console.log('xmldir ' + xmldir);
+    console.log('jsondir ' + jsondir);
 
+    fs.mkdirParent(xmldir, function(){
+      fs.mkdirParent(jsondir, function(){
+      console.log('json dir created')
       fs.writeFile(xmlbasepath, xmlDist, function(error) {
         if (error) {
           console.error("write error:  " + error.message);
@@ -405,7 +408,7 @@ app.get('/generateTestFilesDist',function(req,res){
         }
       });
 
-
+      });
     });
   }
   else{
@@ -457,12 +460,11 @@ app.get('/generateTestFiles',function(req,res){
   }
 
   var xmlbasepath = _localSrcBasepath +"\\test\\resources\\taskXML"+_taskXmlPath+"\\"+xmlFilename;
-  var javabasepath = _localSrcBasepath +"\\test\\java\\sims\\testcase\\"+_appName+"\\"+javaFilename;
+  var javabasepath = _localSrcBasepath +"\\test\\java\\testcase\\"+_appName+"\\"+javaFilename;
 
   var dir = _localSrcBasepath +"\\test\\resources\\taskXML"+_taskXmlPath+"\\";
 
   if (!fs.existsSync(dir)){
-    //fs.mkdirSync(dir);
     fs.mkdirParent(dir,function(){
       fs.writeFile(xmlbasepath, xmldata, function(error) {
         if (error) {
@@ -541,7 +543,7 @@ function updateTaskList(appName, javaClassName) {
 
    var content;
 // First I want to read the file
-  fs.readFile('./tasklist.xml',encoding='utf8', function read(err, data) {
+  fs.readFile('./config.xml',encoding='utf8', function read(err, data) {
     if (err) {
       throw err;
     }
@@ -564,7 +566,6 @@ function updateTaskList(appName, javaClassName) {
 
 function updatePom(appName) {
 
-  //var appData ='<suiteXmlFile>src/test/java/sims/testsuite/testng_'+appName+'.xml</suiteXmlFile>';
   var appData ='<suiteXmlFile>src/test/resources/testsuite/testsuite.xml</suiteXmlFile>';
 
   var content;
@@ -627,7 +628,5 @@ fs.mkdirParent = function(dirPath, callback) {
     }
     //Manually run the callback since we used our own callback to do all these
     setTimeout(function(){ callback && callback(error); }, 3000);
-
-
   });
 };
