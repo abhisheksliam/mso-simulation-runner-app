@@ -60,9 +60,11 @@ for(var i=0;i<taskData.items.length;i++){
     $('#T1').removeClass('active');
     $('#A1').removeClass('active');
 
-    var currentScenarioLSM =   localStorage.getItem('currentScenario');
-    if(currentScenarioLSM)
-    {   currentScenario = currentScenarioLSM
+    localStorage.setItem('currentScenario', taskData.scenario);
+
+    var currentScenario;
+    if(taskData.scenario)
+    {   currentScenario = taskData.scenario
     }else{
         currentScenario = 'T1';
     }
