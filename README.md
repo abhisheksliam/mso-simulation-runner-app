@@ -22,7 +22,7 @@ At the top of the testing using selenium framework, this tool provides:<br />
 
 Pre-requisites:<br />
 1. Download runner server (https://goo.gl/wlEiHH)<br />
-	(RunnerLauncher.v2.zip - will work with updated framework)
+	(RunnerLauncher.v2.zip - will work with updated framework)<br />
 2. Extract the files & Start the server using "RunnerLauncher.exe"<br />
 3. Navigate to /server folder after extracting RunnerLauncher.zip & update following parameter in tasklist.xml: <url>http://192.168.2.150/sims4120503/SIM5Frame.aspx</url> according to the build url you want to run tests.<br />
 4. Checkout selenium framework code from svn<br />
