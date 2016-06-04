@@ -46,7 +46,7 @@ Pre-requisites:<br />
 1. Directory structure for xml/ json / java files will not be created automatically in some cases<br />
 
 ## Features in queue<br />		
- -1. Self Updating Runner Launcher <br />
+ 1. Self Updating Runner Launcher <br />
 
 ## Contributing & Reporting issues
 Please feel free to contribute code; report issues and add suggestions on github.
