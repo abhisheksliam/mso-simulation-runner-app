@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <sim5automation>
 	<server>
-		<url>http://grader13/qatrunk/SIM5Frame.aspx</url>
+		<url>http://sim5server/sims5010406/SIM5Frame.aspx</url>
 		<username/>
 		<password/>
 	</server>
@@ -43,6 +43,9 @@
 			<hubPort>5555</hubPort>
 		</env-->
 	</envSet>
+	<testSettings>
+		<baseClassPath>testcase</baseClassPath>
+	</testSettings>
 	<tasks distributed="true" practice="off" actionScreenShot="off">
 		<env id="2">
 			##customData##
