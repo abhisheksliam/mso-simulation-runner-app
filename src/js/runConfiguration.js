@@ -252,16 +252,16 @@ var getRunJava = function(){
         }
     }
     // todo - update to current app name
-    var preJ = 'package ' +
+    var preJ = 'package testcase.' +
         taskData.appName +
-        ';    import org.testng.annotations.Test;    import test.java.core.SimsBaseTest;    public class Test_' +
+        ';    import org.testng.annotations.Test;    import runner.TestRunner;    public class Test_' +
         ((taskData.id).replace(/\./gi, "_")).trim()
 
         +
         '_' +
         taskData.scenario.toUpperCase().trim()
         +
-        ' extends SimsBaseTest {    ';
+        ' extends TestRunner {    ';
 
     var postJout = ' }';
 
@@ -340,16 +340,16 @@ var getPathwayJava = function(){
         }
     }
     // todo - update to current app name
-    var preJ = 'package ' +
+    var preJ = 'package testcase.' +
         taskData.appName +
-        ';    import org.testng.annotations.Test;    import test.java.core.SimsBaseTest;    public class Test_' +
+        ';    import org.testng.annotations.Test;    import runner.TestRunner;    public class Test_' +
         ((taskData.id).replace(/\./gi, "_")).trim()
 
         +
         '_' +
         taskData.scenario.toUpperCase().trim()
         +
-        ' extends SimsBaseTest {    ';
+        ' extends TestRunner {    ';
 
     var postJout = ' }';
 
