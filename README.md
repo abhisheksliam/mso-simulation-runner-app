@@ -42,15 +42,9 @@ Pre-requisites:<br />
 2. Java<br />
 3. Maven<br />
 
-## Limitations of version 1.1<br />
+## Limitations of version 2<br />
+1. Directory structure for xml/ json / java files will not be created automatically in some cases<br />
 
-1. This will not work if user open app in multiple tabs / windows<br />
-2. Page refresh is not allowed for now, this will detach sync from data<br />
-
-## Features in queue<br />
-1. Add support for known Limitations of version 1.1 <br />
-2. Support to update tasks<br />
-3. Autofill task / method / action data<br />
 
 ## Contributing & Reporting issues
 Please feel free to contribute code; report issues and add suggestions on github.
