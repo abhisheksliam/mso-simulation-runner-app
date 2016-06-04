@@ -252,16 +252,16 @@ var getRunJava = function(){
         }
     }
     // todo - update to current app name
-    var preJ = 'package sims.testcase.' +
+    var preJ = 'package testcase.' +
         taskData.appName +
-        ';    import org.testng.annotations.Test;    import sims.testcase.SimsBase;    public class Test_' +
+        ';    import org.testng.annotations.Test;    import runner.TestRunner;    public class Test_' +
         ((taskData.id).replace(/\./gi, "_")).trim()
 
         +
         '_' +
         taskData.scenario.toUpperCase().trim()
         +
-        ' extends SimsBase {    ';
+        ' extends TestRunner {    ';
 
     var postJout = ' }';
 
@@ -292,7 +292,7 @@ var getRunJava = function(){
 
                     var methodChecked = $('input[name="item'+(i+1)+'-method"]:checked', '#item'+(i+1)+'-methods').data('method');
 
-                    runJ = runJ + 'getAndPerformTask(' +
+                    runJ = runJ + 'executeItem(' +
                     '"' +
                     taskData.id.trim() + '.' + taskData.scenario.trim() +
                     '", ' +
@@ -340,16 +340,16 @@ var getPathwayJava = function(){
         }
     }
     // todo - update to current app name
-    var preJ = 'package sims.testcase.' +
+    var preJ = 'package testcase.' +
         taskData.appName +
-        ';    import org.testng.annotations.Test;    import sims.testcase.SimsBase;    public class Test_' +
+        ';    import org.testng.annotations.Test;    import runner.TestRunner;    public class Test_' +
         ((taskData.id).replace(/\./gi, "_")).trim()
 
         +
         '_' +
         taskData.scenario.toUpperCase().trim()
         +
-        ' extends SimsBase {    ';
+        ' extends TestRunner {    ';
 
     var postJout = ' }';
 
@@ -391,7 +391,7 @@ if(pathwayListData !== undefined){
 
         arrayItem.forEach(function (arrayItem2) {
 
-            runJ = runJ + 'getAndPerformTask(' +
+            runJ = runJ + 'executeItem(' +
             '"' +
             taskData.id.trim() + '.' + taskData.scenario.trim() +
             '", ' +
