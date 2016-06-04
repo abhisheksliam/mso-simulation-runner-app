@@ -48,4 +48,4 @@ Pre-requisites:<br />
 
 ## Contributing & Reporting issues
 Please feel free to contribute code; report issues and add suggestions on github.
-GitHub Repo: https://github.com/AbhishekCompro/abhishekcompro.github.io
+GitHub Repo: https://github.com/sim5runner/sim5runner.github.io
