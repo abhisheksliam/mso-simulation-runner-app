@@ -475,17 +475,19 @@ try{
 }
 
     console.log('prettyRunJava: ' + prettyRunJava);
+	
+	
+	$("#xmlFilename").val(xmlFilename);
+	$("#xmldata").val(prettyRunXML);
+	$("#javaFilename").val(javaFilename);
+	$("#javadata").val(prettyRunJava);
+	$("#distXML").val(distXML);
+	$("#distJava").val(distJava);
+	$("#appName").val(taskData.appName);
+		
+	window.open('', 'nodeSingleTestWindow',"menubar=1,resizable=1,width=1200,height=800");
+	document.getElementById('nodeSingleTestForm').submit();
 
-    window.open ("http://localhost:80/testrun",",","menubar=1,resizable=1,width=1200,height=800");
-
-    setTimeout(function(){
-        $.post("http://localhost:80/testrun",{xmlFilename: xmlFilename, xmldata: prettyRunXML, javaFilename: javaFilename, javadata: prettyRunJava, distXML: distXML, distJava: distJava, appName: taskData.appName}, function(data){
-            if(data==='done')
-            {
-                console.log("post success");
-            }
-        });
-    }, 2000);
 });
 
 $( "#run-conf-sidebar" ).click(function() {
@@ -606,17 +608,21 @@ $("#exportFinalTop").click(function(){
     }catch(er){
 
     }
-
-    window.open ("http://localhost:80/commit",",","menubar=1,resizable=1,width=1200,height=800");
-
-    setTimeout(function(){
-        $.post("http://localhost:80/commit",{xmlFilename:xmlFilename,xmldata: prettyRunXML,javaFilename:javaFilename,javadata: prettyRunJava, distXML: distXML, distJava:distJava, appName: taskData.appName, jsonFilename: jsonFilename,distJson:distJson }, function(data){
-            if(data==='done')
-            {
-                console.log("post success");
-            }
-        });
-    }, 2000);
+	
+	$("#xmlFilename").val(xmlFilename);
+	$("#xmldata").val(prettyRunXML);
+	$("#javaFilename").val(javaFilename);
+	$("#javadata").val(prettyRunJava);
+	$("#distXML").val(distXML);
+	$("#distJava").val(distJava);
+	$("#appName").val(taskData.appName);
+	$("#jsonFilename").val(jsonFilename);
+	$("#distJson").val(distJson);
+	  
+		
+	window.open('', 'nodePathwayWindow',"menubar=1,resizable=1,width=1200,height=800");
+	document.getElementById('nodePathwayForm').submit();
+	
 });
 
 
