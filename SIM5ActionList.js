@@ -204,8 +204,11 @@ var SIM5ActionList = (function(){
             "selectCellRange(String cellRange, Method methodType)",
             "pressKeyFromVirtualKeyboard(String keyName)",
             "clickTwiceAtCurrentPos()",
-            "rightClickOnCell(String cellName)"
-        ]
+            "rightClickOnCell(String cellName)",
+            "selectColumn(String columnName)",
+            "selectRow(int rowNumber)",
+            "doubleClickFillHandle(String elementName)"
+            ]
     };
 
     return {
