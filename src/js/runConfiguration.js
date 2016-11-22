@@ -149,6 +149,7 @@ var taskRunDataToXMl = function(){
 
                     var methodChecked = $('input[name="item'+(i+1)+'-method"]:checked', '#item'+(i+1)+'-methods').data('method');
 
+
                     for(var k=0; k<taskData.items[i].methods[j].actions.length; k++){
                         if(taskData.items[i].methods[j].actions[k].init){
 
