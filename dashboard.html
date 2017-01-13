@@ -298,6 +298,7 @@
 
         <li id="downloadTaskJSON"><a href="#"><i class="fa fa-download text-blue"></i> <span>Export Task JSON</span></a></li>
         <li><a href="#"id="previewXml" data-toggle="modal" data-target="#prettyXmlModal"><i class="fa fa-code text-fuchsia"></i> <span>Preview XML</span></a></li>
+        <li><a href="#"id="scenarioParams" data-toggle="modal" data-target="#prettyScenarioModal"><i class="fa fa-archive text-olive"></i> <span>Scenario Params</span></a></li>
         <!--<li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>-->
       </ul>
     </section>
@@ -371,6 +372,27 @@
                 </form>
               </div>
               <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scenario Modal -->
+        <div class="modal fade" id="prettyScenarioModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width: 1024px;margin-left: -30%">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myScenarioModalLabel">Scenario Params</h4>
+              </div>
+              <div class="box-body pad">
+                <form>
+                  <textarea id="prettyScenarioModalBody" class="textarea" placeholder="Enter Scenario Params Here" style="width: 100%; height: 450px;font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button id="processPrettyScenarioModal" type="button" class="btn btn-primary">Merge Scenario Params</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
               </div>
             </div>
@@ -809,6 +831,7 @@
 <script src="./src/js/renderOnReload.js"></script>
 <script src="./src/js/jsonExport.js"></script>
 <script src="./src/js/indexUtil.js"></script>
+<script src="./src/js/scenarioParamsMerge.js"></script>
 <!--http://danml.com/download.html-->
 
 <script type="text/javascript">
