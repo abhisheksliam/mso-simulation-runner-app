@@ -613,9 +613,9 @@ $("#exportFinalTop").click(function(){
     window.open ("http://localhost:80/commit",",","menubar=1,resizable=1,width=1200,height=800");
 
     setTimeout(function(){
-	    var _tempXml = prettyRunXML.replace(/pressKeyNum{arrowhead bullet}/gi, "6")
-	    _tempXml = _tempXml.replace(/pressKeyNum{hollow round bullet}/gi, "2")
-        $.post("http://localhost:80/commit",{xmlFilename:xmlFilename,xmldata: _tempXml,javaFilename:javaFilename,javadata: prettyRunJava, _tempXml: _tempXml, distJava:distJava, appName: taskData.appName, jsonFilename: jsonFilename,distJson:distJson }, function(data){
+	    var _tempXml = prettyRunXML.replace(/pressKeyNum{arrowhead bullet}/gi, "6");
+	    _tempXml = _tempXml.replace(/pressKeyNum{hollow round bullet}/gi, "2");
+        $.post("http://localhost:80/commit",{xmlFilename:xmlFilename,xmldata: _tempXml,javaFilename:javaFilename,javadata: prettyRunJava, distXML: _tempXml, distJava:distJava, appName: taskData.appName, jsonFilename: jsonFilename,distJson:distJson }, function(data){
             if(data==='done')
             {
                 console.log("post success");
