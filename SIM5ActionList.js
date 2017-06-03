@@ -11,6 +11,7 @@ var SIM5ActionList = (function(){
 
         excel   :   [
             "clickAndWait(String elementName)",
+            "clickAndWait(String elementName, String paramValue)",
             "selectCell(String cellName)",
             "selectCellRange(String cellRange, Method methodType)",
             "rightClickOnCell(String cellName)",
@@ -76,6 +77,7 @@ var SIM5ActionList = (function(){
             "clickMultipleTimes(String elementName , String numOfTimes)",
             "clickAndHold(String elementName)",
             "clickAndWait(String elementName)",
+            "clickAndWait(String elementName, String paramValue)",
             "doubleClickAndWait()",
             "doubleClick(String elementName)",
             "clickTwice(String elementName)",
@@ -138,6 +140,7 @@ var SIM5ActionList = (function(){
             "clickMultipleTimes(String elementName , String numOfTimes)",
             "clickAndHold(String elementName)",
             "clickAndWait(String elementName)",
+            "clickAndWait(String elementName, String paramValue)",
             "dragAndDropBy(String source, String target)",
             "dragAndDropByOffset(String elementName, int xOffset, int yOffset)",
             "moveByOffset(int xOffset, int yOffset)",
@@ -177,6 +180,7 @@ var SIM5ActionList = (function(){
             "clickMultipleTimes(String elementName , String numOfTimes)",
             "clickAndHold(String elementName)",
             "clickAndWait(String elementName)",
+            "clickAndWait(String elementName, String paramValue)",
             "doubleClickAndWait()",
             "doubleClick(String elementName)",
             "clickTwice(String elementName)",
